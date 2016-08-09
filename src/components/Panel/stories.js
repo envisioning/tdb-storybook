@@ -3,9 +3,12 @@ import { storiesOf, action } from '@kadira/storybook';
 import Panel from './';
 
 storiesOf('Panel', module)
-  .add('Default', () => (
+  .add('300x300', () => (
     <Panel
       header={ <h2> This is the header </h2> }>
-      <div> This is the body </div>
+      <div style={{
+        height: 300,
+        width: 300
+      }}> This is the body </div>
     </Panel>
   ))
