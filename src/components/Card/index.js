@@ -4,6 +4,7 @@ import Highlight from 'react-highlighter';
 import classNames from 'classnames';
 import SweetAlert from 'sweetalert-react';
 import shallowCompare from 'react-addons-shallow-compare';
+import styles from './styles';
 
 class CardBody extends React.Component {
   render() {

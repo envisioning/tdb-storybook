@@ -1,13 +1,15 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import { Icons, Colors } from '../../../resources';
+import { Organizations, Technologies, ViewEntry, Projects, Attachments } from '../../../resources/icons';
+
 import Card from '../';
+import FaBeer from 'react-icons/lib/fa/beer';
 
 storiesOf('Card', module)
   .add('tech card', () => (
     <Card
       _id={'abcedfr'}
-      menuIcon={Icons.collections.technologies}
+      menuIcon={<ViewEntry />}
       image={'http://www.placehold.it/600x400'}
       menuItems={[
         {
@@ -24,7 +26,7 @@ storiesOf('Card', module)
       description={'this is a short description'}
       footerButtons={[
         {
-          icon: 'fa fa-eye',
+          icon: <ViewEntry />,
           text: '',
           onClick: () => {},
           tooltipText: 'View entry',
@@ -37,19 +39,19 @@ storiesOf('Card', module)
           tooltipIdentifier: 'status'
         },
         {
-          icon: Icons.collections.attachments,
+          icon: <FaBeer />,
           text: 2,
           tooltipText: `${2} attachments`,
           tooltipIdentifier: 'attachmentsCount'
         },
         {
-          icon: Icons.collections.projects,
+          icon: <FaBeer />,
           text: 3,
           tooltipText: `${3} projects`,
           tooltipIdentifier: 'projectsCount'
         },
         {
-          icon: Icons.collections.organizations,
+          icon: <FaBeer />,
           text: 4,
           tooltipText: `${4} organizations`,
           tooltipIdentifier: 'organizationsCount'
