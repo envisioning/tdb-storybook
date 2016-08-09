@@ -5,7 +5,7 @@ import store from '../store';
 const Asteroid = createClass();
 // Connect to a Meteor backend
 const asteroid = new Asteroid({
-    endpoint: 'ws://localhost:4000/websocket'
+    endpoint: 'ws://tdbstaging.meteorapp.com/websocket'
 });
 
 // Use real-time collections
