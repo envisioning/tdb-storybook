@@ -19,8 +19,5 @@ module.exports = {
         loader: 'file-loader'
       }
     ]
-  },
-  plugins: [
-    new ExtractTextPlugin('bundle.css')
-  ],
+  }
 }

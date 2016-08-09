@@ -1,7 +1,6 @@
 import { configure } from '@kadira/storybook';
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
-import './bundle.css'
-
+import '../styles/style.scss'
 
 
 function loadStories() {
