@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
-
-import './style.css'
+import MyComponent from '../MyComponent'
 
 export default class App extends Component {
   render() {
     return (
       <div>
-        <div>Oi</div>
+        <MyComponent />
       </div>
     );
   }
