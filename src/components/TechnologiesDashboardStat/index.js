@@ -1,30 +1,14 @@
 import React, {PropTypes} from 'react'
 import DashboardStat from '../DashboardStat'
+import { Label } from 'react-bootstrap'
 
 const TechnologiesDashboardStat = ({
-  icon,
-  title,
   total,
   published,
-  review,
-  draft,
-
+  reviewed,
+  drafts,
 }) => (
-  <DashboardStat
-    icon={icon}
-    title={title}>
-    <table>
-      <tbody>
-    </table>
-  </DashboardStat>
+  <DashboardStat>oi</DashboardStat>
 )
-
-TechnologiesDashboardStat.propTypes = {
-  icon: PropTypes.element.isRequired,
-  title: PropTypes.string.isRequired,
-  total: PropTypes.number.isRequired,
-  published: PropTypes.number.isRequired,
-  review: PropTypes.number.isRequired,
-  draft: PropTypes.number.isRequired,
-
-}
+TechnologiesDashboardStat
+export default TechnologiesDashboardStat
