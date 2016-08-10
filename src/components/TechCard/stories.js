@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
-import TechCard from '../';
+import TechCard from './';
+import { getCloudinaryPath, getCardUrl} from '../../utils/cloudinary_url'
 
 const longText = `Aqui é Body Builder Ipsum PORRA! Birl!
 Ó o homem ali porra!, é 13 porra! Ele tá olhando pra gente. É 37 anos caralho! Vai subir árvore é o caralho porra! Aqui nóis constrói fibra, não é água com músculo.
@@ -22,7 +23,7 @@ storiesOf('Technology Card', module)
       attachmentsCount={12}
       projectsCount={23}
       organizationsCount={12}
-      image={'http://www.placehold.it/300x200'}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
       highlight={''}
       hideMenuItems={false}
       deleteAlertOpen={false}
@@ -40,7 +41,7 @@ storiesOf('Technology Card', module)
       attachmentsCount={12}
       projectsCount={23}
       organizationsCount={12}
-      image={'http://www.placehold.it/300x200'}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
       highlight={''}
       hideMenuItems={false}
       deleteAlertOpen={false}
@@ -58,7 +59,7 @@ storiesOf('Technology Card', module)
       attachmentsCount={12}
       projectsCount={23}
       organizationsCount={12}
-      image={'http://www.placehold.it/300x200'}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
       highlight={''}
       hideMenuItems={false}
       deleteAlertOpen={false}
@@ -77,7 +78,7 @@ storiesOf('Technology Card', module)
       attachmentsCount={12}
       projectsCount={23}
       organizationsCount={12}
-      image={'http://www.placehold.it/300x200'}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
       highlight={'Drone Deli'}
       hideMenuItems={false}
       deleteAlertOpen={false}
@@ -96,7 +97,7 @@ storiesOf('Technology Card', module)
       attachmentsCount={12}
       projectsCount={23}
       organizationsCount={12}
-      image={'http://www.placehold.it/300x200'}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
       highlight={''}
       hideMenuItems={true}
       deleteAlertOpen={false}
@@ -115,7 +116,7 @@ storiesOf('Technology Card', module)
       attachmentsCount={12}
       projectsCount={23}
       organizationsCount={12}
-      image={'http://www.placehold.it/300x200'}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
       highlight={''}
       hideMenuItems={true}
       deleteAlertOpen={false}
@@ -134,7 +135,7 @@ storiesOf('Technology Card', module)
         attachmentsCount={12}
         projectsCount={23}
         organizationsCount={12}
-        image={'http://www.placehold.it/300x200'}
+        image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
         highlight={''}
         hideMenuItems={true}
         deleteAlertOpen={false}
@@ -153,10 +154,90 @@ storiesOf('Technology Card', module)
         attachmentsCount={0}
         projectsCount={0}
         organizationsCount={0}
-        image={'http://www.placehold.it/300x200'}
+        image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
         highlight={''}
         hideMenuItems={true}
         deleteAlertOpen={false}
         onConfirmDelete={() => console.log('Confirm delete!')}
+    />
+  ))
+  .add('deleted', () => (
+      <TechCard
+        style={{width: 300}}
+        _id={'abc'}
+        status={'draft'}
+        shortDescription={''}
+        description={'this is a long description'}
+        techId={'0023'}
+        name={'Drone Delivery'}
+        attachmentsCount={0}
+        projectsCount={0}
+        organizationsCount={0}
+        image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
+        highlight={''}
+        hideMenuItems={true}
+        deleteAlertOpen={false}
+        onConfirmDelete={() => console.log('Confirm delete!')}
+        isDeleted={true}
+    />
+  ))
+  .add('no image provided', () => (
+      <TechCard
+        style={{width: 300}}
+        _id={'abc'}
+        status={'draft'}
+        shortDescription={''}
+        description={'this is a long description'}
+        techId={'0023'}
+        name={'Drone Delivery'}
+        attachmentsCount={0}
+        projectsCount={0}
+        organizationsCount={0}
+        image={''}
+        highlight={''}
+        hideMenuItems={true}
+        deleteAlertOpen={false}
+        onConfirmDelete={() => console.log('Confirm delete!')}
+        isDeleted={false}
+    />
+  ))
+  .add('image not found', () => (
+      <TechCard
+        style={{width: 300}}
+        _id={'abc'}
+        status={'draft'}
+        shortDescription={''}
+        description={'this is a long description'}
+        techId={'0023'}
+        name={'Drone Delivery'}
+        attachmentsCount={0}
+        projectsCount={0}
+        organizationsCount={0}
+        image={'fasdas'}
+        highlight={''}
+        hideMenuItems={true}
+        deleteAlertOpen={false}
+        onConfirmDelete={() => console.log('Confirm delete!')}
+        isDeleted={false}
+    />
+  ))
+  .add('show full description', () => (
+    <TechCard
+      style={{width: 300}}
+      _id={'abc'}
+      status={'draft'}
+      shortDescription={longText}
+      description={'this is a long description'}
+      techId={'0023'}
+      name={'Drone Delivery'}
+      attachmentsCount={12}
+      projectsCount={23}
+      organizationsCount={12}
+      image={getCardUrl(getCloudinaryPath('XuF6eQ4nHFc86qckq'))}
+      highlight={''}
+      hideMenuItems={true}
+      deleteAlertOpen={false}
+      onConfirmDelete={() => console.log('Confirm delete!')}
+      showFullDescription={true}
     />
   ))

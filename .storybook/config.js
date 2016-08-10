@@ -4,7 +4,7 @@ import 'sweetalert/dist/sweetalert.css';
 import '../src/styles/style.scss'
 
 function loadStories() {
-  require('../src/components/TechCard/stories');
+  require('../src/components/TechCard/stories.js');
   require('../src/components/OrgCard/stories');
   require('../src/components/AttachmentCard/stories');
   require('../src/components/ProjectCard/stories');

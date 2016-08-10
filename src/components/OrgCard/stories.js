@@ -1,6 +1,7 @@
 import React from 'react';
 import { storiesOf, action } from '@kadira/storybook';
 import OrgCard from './';
+import { getCloudinaryPath, getCardUrl} from '../../utils/cloudinary_url'
 
 storiesOf('Organization Card', module)
   .add('default', () => (
@@ -8,7 +9,7 @@ storiesOf('Organization Card', module)
       style={{width: 300}}
       _id={'abc'}
       type={'governamental'}
-      logo={'http://www.placehold.it/300x200'}
+      logo={getCardUrl(getCloudinaryPath('ePKXLDsc54QybCHTB'))}
       description={'this is a short description'}
       name={'Apple'}
       highlight={''}

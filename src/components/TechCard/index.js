@@ -1,10 +1,7 @@
 import React, { PropTypes } from 'react';
-import { getCardUrl, getCloudinaryPath } from '../../utils/cloudinary';
 import Card from '../Card';
 import CardHOC from '../CardHOC';
 import { Organizations, Technologies, ViewEntry, Projects, Attachments } from '../../resources/icons';
-
-const remove = () => {};
 
 class TechCard extends React.Component {
   render() {
@@ -44,7 +41,7 @@ class TechCard extends React.Component {
       default:
         extraClass = 'panel-primary'
     }
-    
+
     return (
       <Card
         _id={_id}

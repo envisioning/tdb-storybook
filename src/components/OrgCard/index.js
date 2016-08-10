@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import { getCloudinaryPath, getCardUrl} from '../../utils/cloudinary_url'
 import Card from '../Card';
 import CardHOC from '../CardHOC';
 import { Organizations, Technologies, ViewEntry, Projects, Attachments } from '../../resources/icons';

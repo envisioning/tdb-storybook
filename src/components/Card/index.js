@@ -6,6 +6,9 @@ import SweetAlert from 'sweetalert-react';
 import shallowCompare from 'react-addons-shallow-compare';
 import styles from './styles';
 import { DropdownButton, MenuItem} from 'react-bootstrap';
+import SafeImage from '../SafeImage'
+
+const IMAGE_PLACEHOLDER = 'https://placehold.it/300x200';
 
 class Card extends React.Component {
   render() {
@@ -29,6 +32,7 @@ class Card extends React.Component {
       hideMenuItems,
       _score,
       style,
+      showFullDescription = false,
       ...props
     } = this.props;
 
@@ -54,7 +58,7 @@ class Card extends React.Component {
             </div>
           }
           <a href={entryLink}>
-            <img className='img-responsive' src={image} />
+            <SafeImage className='img-responsive' src={image ? image : IMAGE_PLACEHOLDER} />
           </a>
           <div className="card-body">
             {
@@ -76,7 +80,7 @@ class Card extends React.Component {
             </h5>
 
             <div className="card-description">
-              <p>
+              <p style={showFullDescription ? {'-webkit-line-clamp': 'initial'} : null}>
                 <Highlight search={highlight}>
                   {description}
                 </Highlight>
