@@ -2,6 +2,8 @@ import React, { PropTypes } from 'react';
 import Card from '../Card';
 import CardHOC from '../CardHOC';
 import { Organizations, Technologies, ViewEntry, Projects, Attachments } from '../../resources/icons';
+import { getTechColor } from '../../utils/entity_color';
+
 
 class TechCard extends React.Component {
   render() {
@@ -27,20 +29,7 @@ class TechCard extends React.Component {
       ...props
     } = this.props;
 
-    let extraClass
-    switch (status) {
-      case 'draft':
-        extraClass = 'panel-danger'
-        break;
-      case 'review':
-        extraClass = 'panel-warning'
-        break;
-      case 'published':
-        extraClass = 'panel-success'
-        break;
-      default:
-        extraClass = 'panel-primary'
-    }
+    const extraClass = `panel-${getTechColor(status)}`
 
     return (
       <Card

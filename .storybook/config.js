@@ -11,6 +11,7 @@ function loadStories() {
   require('../src/components/DashboardStat/stories');
   require('../src/components/Panel/stories');
   require('../src/components/CardGrid/stories');
+  require('../src/components/RecentUpdates/stories');
   // require as many stories as you need.
 }
 

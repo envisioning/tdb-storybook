@@ -8,6 +8,7 @@ import Bullseye from 'react-icons/lib/fa/bullseye';
 import Rocket from 'react-icons/lib/fa/rocket';
 import Archive from 'react-icons/lib/fa/archive';
 import Eye from 'react-icons/lib/fa/eye'
+import Bell from 'react-icons/lib/fa/bell';
 
 export const Organizations = Building
 export const Projects = Folder
@@ -19,3 +20,4 @@ export const Readiness = Bullseye
 export const Impact = Rocket
 export const Collections = Archive
 export const ViewEntry = Eye
+export const RecentUpdates = Bell
