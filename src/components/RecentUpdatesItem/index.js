@@ -8,15 +8,15 @@ import tokenizerComponentConfig from '../../config/tokenizer_component_config';
 const styles = {
   container: {
     //display: 'flex',
-    //flexDirection: 'row',
-    //justifyContent: 'space-between'
+    //flexDirection: 'column',
+    //alignItems: 'center'
   },
   text: {
     width: '100%',
     //display: 'flex',
-    margin: '10px 0px 10px 5px',
+    //margin: '10px 0px 10px 5px',
     // width: '100%',
-    wordWrap: 'break-word'
+    //wordWrap: 'break-word'
   },
   date: {
     //float: 'right',
@@ -68,18 +68,23 @@ class RecentUpdatesItem extends React.Component {
       userId,
       docId,
       date,
-      values
+      values,
+      style,
+      details,
+      ...props
     } = this.props
 
     const { showDetails } = this.state
 
+    const mergedStyle = Object.assign({}, styles.container, style)
     return (
-      <ListGroupItem style={styles.container}>
+      <ListGroupItem style={mergedStyle} {...props}>
         <div style={styles.mainRow}>
           <span style={styles.text}>
             <NotificationBuilder
               dict={tokenizerComponentConfig}
               template={recentUpdatesTextConfig[method]}
+              onToggleUpdate={this.handleClickShowDetails}
               values={values}
               />
           </span>
@@ -88,7 +93,7 @@ class RecentUpdatesItem extends React.Component {
           </Label>
         </div>
         {
-          (false && showDetails) &&
+          (details && showDetails) &&
           <div style={styles.detailsRow}>
             <ListGroup>
               {

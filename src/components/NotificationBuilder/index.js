@@ -39,14 +39,15 @@ const NotificationBuilder = ({
   status,
   userLink,
   type,
-  dict
+  dict,
+  ...props
 }) => {
   const tokens = tokenize(template, Object.keys(dict));
-  console.log(tokens);
+
   return (
     <div>
       {
-        tokens.map((token) => {
+        tokens.map((token, i) => {
           let finalElement;
           Object.keys(dict).forEach(keyword => {
             const regex = new RegExp(`${keyword}\{(.*?)\}`)
@@ -54,18 +55,24 @@ const NotificationBuilder = ({
             if (match) {
               const dictObject = dict[keyword]
 
+              Object.keys(dictObject.props).forEach(prop => {
+
+                if (typeof dictObject.props[prop] === 'function') {
+                  dictObject.props[prop] = dictObject.props[prop].bind(props)
+                }
+              })
+
               finalElement = React.createElement(dictObject.element,{
-                ...dictObject.props, ...values[match[1]]
+                ...dictObject.props, ...values[match[1]], key: i
               })
             }
           })
 
           if (finalElement) {
-            console.log('returning ', finalElement)
             return finalElement
           }
 
-          return <span>{token}</span>
+          return <span key={i}>{token}</span>
         })
       }
     </div>

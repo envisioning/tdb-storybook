@@ -39,12 +39,14 @@ const recentUpdates = [
     userId: '1232151',
     docId: '123541234',
     date: moment().set({'year': 2013, 'month': 3}),
-    //text: 'userLink{user} linked a new image thumb{img} to techLabel{tech}',
+    details: [
+      'a',
+      'b'
+    ],
     values: {
       user: {
-        href: 'http://www.google.com',
+        href: '#',
         children: 'Rafael',
-        target: '_blank'
       },
       texto: {
         children: 'hahaha'
@@ -67,9 +69,8 @@ const recentUpdates = [
     date: moment().set({'year': 2013, 'month': 3}),
     values: {
       user: {
-        href: 'http://www.google.com',
+        href: '#',
         children: 'Rafael',
-        target: '_blank'
       },
       tech: {
         text: 'Drone',
@@ -135,11 +136,18 @@ const recentUpdates = [
     userId: '1232151',
     docId: '123541234',
     date: moment().set({'year': 2013, 'month': 3}),
+    details: [
+      'a',
+      'b'
+    ],
     values: {
       user: {
         href: 'http://www.google.com',
         children: 'Rafael',
         target: '_blank'
+      },
+      updated: {
+        children: 'updated'
       },
       tech: {
         text: 'Drone',

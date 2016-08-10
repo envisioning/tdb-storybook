@@ -3,6 +3,8 @@ import Panel from '../Panel';
 import { RecentUpdates as RecentUpdatesIcon } from '../../resources/icons';
 import RecentUpdatesItem from '../RecentUpdatesItem'
 import EntityLabel from '../EntityLabel';
+import Infinite from 'react-infinite';
+
 
 const RecentUpdates = ({
   recentUpdates = []
@@ -10,16 +12,22 @@ const RecentUpdates = ({
   return (
     <Panel
       header={<h2><RecentUpdatesIcon /> Recent Updates</h2>}>
-      <div>
+      <Infinite
+        containerHeight={400}
+        elementHeight={60}
+        infiniteLoadBeginEdgeOffset={300}
+        loadingSpinnerDelegate={<div>Loading...</div>}
+        onInfiniteLoad={() => console.log('infinite')}>
         {
         recentUpdates.map((recentUpdate, i) => (
           <RecentUpdatesItem
+            style={{minHeight: 60}}
             key={i}
             {...recentUpdate}
           />
         ))
         }
-      </div>
+      </Infinite>
     </Panel>
   )
 }

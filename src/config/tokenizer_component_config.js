@@ -40,6 +40,14 @@ export default {
       type: 'collections'
     }
   },
+  toggleDetails: {
+    element: 'a',
+    props: {
+      onClick() {
+        this.onToggleUpdate()
+      }
+    }
+  },
   orgLabel: {
     element: EntityLabel,
     props: {
