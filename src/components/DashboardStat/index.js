@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Panel from '../Panel'
+import { Panel, PanelHeader, PanelBody, PanelTitle} from '../Panel'
 import styles from './styles'
 
 export const DashboardStatTableItem = ({children}) => (
@@ -9,31 +9,50 @@ export const DashboardStatTableItem = ({children}) => (
 )
 
 const DashboardStat = ({
-  icon,
+  iconElementLeft,
   title,
   addLink,
   addText,
   children
 }) => (
-  <Panel className="ibox dashboard-stat"
-    header={<h2>{icon} {title}</h2>}>
-    <a href={addLink} className="btn btn-primary btn-block">
-      {addText}
-    </a>
-    <table className="table">
-      <tbody>
-        {children}
-      </tbody>
-    </table>
+  <Panel>
+    <PanelHeader
+      title={<PanelTitle iconElementLeft={iconElementLeft} title={title} />}>
+    </PanelHeader>
+    <PanelBody>
+      <a href={addLink} className="btn btn-primary btn-block">
+        {addText}
+      </a>
+      <table className="table">
+        <tbody>
+          {children}
+        </tbody>
+      </table>
+    </PanelBody>
   </Panel>
 )
 
 DashboardStat.propTypes = {
-  icon: PropTypes.element.isRequired,
+  /**
+   * Icon element to display at the left of the title
+   */
+  iconElementLeft: PropTypes.element.isRequired,
+  /**
+   * The title to display on the panel header
+   */
   title: PropTypes.string.isRequired,
+  /**
+   * Url for the add page of this entity
+   */
   addLink: PropTypes.string.isRequired,
+  /**
+   * Text to display on the add button
+   */
   addText: PropTypes.string.isRequired,
-  children: PropTypes.element.isRequired
+  /**
+   * Applied to the root element
+   */
+  children: PropTypes.node
 }
 
 export default DashboardStat
