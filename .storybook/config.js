@@ -7,6 +7,8 @@ function loadStories() {
   require('../src/components/MyComponent/stories');
   require('../src/components/Card/stories');
   require('../src/components/TechCard/stories');
+  require('../src/components/DashboardStat/stories');
+  require('../src/components/Panel/stories');
   // require as many stories as you need.
 }
 
