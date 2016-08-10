@@ -2,13 +2,15 @@ import React, { PropTypes } from 'react'
 
 const Panel = ({
   header,
-  children
+  children,
+  style,
+  ...props
 }) => (
-  <div className="ibox">
+  <div className="ibox" style={style} {...props}>
     <div className="ibox-title">
       {header}
     </div>
-    <div className="ibox-content">
+    <div className="ibox-content" style={{height: '100%'}}>
       {children}
     </div>
   </div>

@@ -55,6 +55,8 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
     "classnames": "^2.2.5",
+    "cloudinary": "^1.4.1",
+    "cloudinary-core": "^2.1.2",
     "extract-text-webpack-plugin": "^1.0.1",
     "flexboxgrid": "^6.3.0",
     "immutable": "^3.8.1",

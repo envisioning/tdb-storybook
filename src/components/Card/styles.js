@@ -1,4 +1,7 @@
 export default {
+  container: {
+    border: '1px solid rgba(0, 0, 0, 0.1)'
+  },
   cardBox: {
     padding: 0,
     zIndex: 1,
@@ -6,6 +9,13 @@ export default {
     border: '1px solid rgba(0, 0, 0, 0.2)',
     boxShadow: '0 8px 6px -6px rgba(0, 0, 0, 0.2)',
     transition: 'all 0.3s ease',
+  },
+  buttonDropdown: {
+    backgroundColor: 'white',
+    border: '1px solid #e7eaec',
+    color: 'gray',
+    color: '#676a6c',
+    fontSize: 13
   },
   cardLabel: {
     borderRadius: 0,
