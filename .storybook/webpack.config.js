@@ -6,6 +6,11 @@ module.exports = {
   module: {
     loaders: [
       {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader',
+        exclude: /flexboxgrid/
+      },
+      {
         test: /\.scss$/,
         loaders: ['style', 'css', 'sass'],
         include: path.resolve(__dirname, '../')

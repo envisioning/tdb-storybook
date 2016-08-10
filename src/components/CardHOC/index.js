@@ -5,23 +5,25 @@ const Card = (ComposedComponent) => {
   return class extends React.Component {
     constructor(props) {
       super(props);
-      this.handleClickDelete = this.handleClickDelete.bind(this);
+      this.showDeleteAlert = this.showDeleteAlert.bind(this);
+      this.hideDeleteAlert = this.hideDeleteAlert.bind(this);
+      this.makeDeleted = this.makeDeleted.bind(this);
 
       this.state = {
         isDeleted: false,
-        showDeleteAlert: false
+        deleteAlertOpen: false
       };
     }
 
-    handleClickDelete(_id, name) {
+    showDeleteAlert(_id, name) {
       this.setState({
-        showDeleteAlert: true
+        deleteAlertOpen: true
       });
     }
 
     hideDeleteAlert() {
       this.setState({
-        showDeleteAlert: false
+        deleteAlertOpen: false
       })
     }
 
@@ -32,10 +34,10 @@ const Card = (ComposedComponent) => {
     }
 
     render() {
-      const { isDeleted, showDeleteAlert } = this.state
+      const { isDeleted, deleteAlertOpen } = this.state
       return <ComposedComponent
         isDeleted={isDeleted}
-        showDeleteAlert={showDeleteAlert}
+        deleteAlertOpen={deleteAlertOpen}
         hideDeleteAlert={this.hideDeleteAlert}
         makeDeleted={this.makeDeleted}
         {...this.props}

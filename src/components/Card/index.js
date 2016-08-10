@@ -5,8 +5,9 @@ import classNames from 'classnames';
 import SweetAlert from 'sweetalert-react';
 import shallowCompare from 'react-addons-shallow-compare';
 import styles from './styles';
+import { DropdownButton, MenuItem} from 'react-bootstrap';
 
-class CardBody extends React.Component {
+class Card extends React.Component {
   render() {
     const {
       _id,
@@ -21,56 +22,52 @@ class CardBody extends React.Component {
       highlight,
       extraClass,
       isDeleted,
-      onShouldClose,
-      showDeleteAlert,
+      onCloseDeleteAlert,
+      deleteAlertOpen,
       deleteTitle,
       onConfirmDelete,
       hideMenuItems,
-      _score
+      _score,
+      style,
+      ...props
     } = this.props;
     return (
 
-        <div className="ibox card-box"
-          style={{border: '1px solid rgba(0, 0, 0, 0.1)', opacity: isDeleted ? 0.5 : 1}}>
-          <div className={classNames('ibox-content', 'no-padding', 'card-label', extraClass)}>
+      <div className="ibox card-box"
+        style={{border: '1px solid rgba(0, 0, 0, 0.1)', opacity: isDeleted ? 0.5 : 1, ...style}}>
+        <div className={classNames('ibox-content', 'no-padding', 'card-label', extraClass)}>
+          {
+            !hideMenuItems &&
+            <div className="btn-group card-tools">
+              <DropdownButton bsSize="xsmall" title={menuIcon} id="card-tools" style={styles.buttonDropdown}>
+                {
+                  menuItems.map(({label, link, onClick }, i) => {
+                    return (
+                      <MenuItem eventKey={i} key={i} onClick={onClick}>
+                        {label}
+                      </MenuItem>
+                    );
+                  })
+                }
+
+              </DropdownButton>
+            </div>
+          }
+          <a href={entryLink}>
+            <img className='img-responsive' src={image} />
+          </a>
+          <div className="card-body">
             {
-              !hideMenuItems &&
-              <div className="btn-group card-tools">
-                <button data-toggle="dropdown" className="btn btn-xs btn-white dropdown-toggle">
-                  <i className={menuIcon}></i> <span className="caret"></span>
-                </button>
-                  <ul className="dropdown-menu">
-                    {
-                      menuItems.map(({label, link, onClick }, i) => {
-                        return (
-                          <li key={i}>
-                            <a href={link ? link : '#'} onClick={(e) => {e.preventDefault(); onClick();}}>
-                              {label}
-                            </a>
-                          </li>
-                        );
-                      })
-                    }
-                  </ul>
-              </div>
+              subname ?
+              <p className="card-id">
+                <Highlight search={highlight}>
+                  {subname}
+                </Highlight>
+              </p>
+              : null
             }
-            <a href={entryLink}>
-              <img className='img-responsive' src={image} />
-            </a>
-            <div className="card-body">
-              {
-                subname ?
-                <p className="card-id">
-                  <Highlight search={highlight}>
-                    {subname}
-                  </Highlight>
-                </p>
-                : null
-              }
 
-              <div onClick={() => {console.log('oi')}}>
-
-
+            <div onClick={() => {console.log('oi')}}>
               <h5 className="card-name">
                 <a href={entryLink}>
                   <Highlight search={highlight}>
@@ -78,24 +75,26 @@ class CardBody extends React.Component {
                   </Highlight>
                 </a>
               </h5>
-              </div>
-              <div className="card-description">
-                <p>
-                  <Highlight search={highlight}>
-                    {description}
-                  </Highlight>
-                </p>
-                <p style={{color: '#d3d3d3', fontSize: 10}}>
-                  {_score}
-                </p>
-              </div>
-              <div className="btn-group card-footer">
-                {
-                  footerButtons.map(({icon, text, onClick, tooltipText, tooltipIdentifier}, i) => {
-                    if (!icon && !text) {
-                      return null;
-                    }
-                    return (
+            </div>
+
+            <div className="card-description">
+              <p>
+                <Highlight search={highlight}>
+                  {description}
+                </Highlight>
+              </p>
+              <p style={{color: '#d3d3d3', fontSize: 10}}>
+                {_score}
+              </p>
+            </div>
+
+            <div className="btn-group card-footer">
+              {
+                footerButtons.map(({icon, text, onClick, tooltipText, tooltipIdentifier}, i) => {
+                  if (!icon && !text) {
+                    return null;
+                  }
+                  return (
                     <CardTooltip
                       key={i}
                       id={`${_id}_${i}`}
@@ -103,27 +102,48 @@ class CardBody extends React.Component {
                       onClick={onClick}
                       tooltipText={tooltipText}
                       text={text} />
-                    );
-                  })
-                }
-              </div>
+                  );
+                })
+              }
             </div>
           </div>
-          <SweetAlert
-            onEscapeKey={onShouldClose}
-            onOutsideClick={onShouldClose}
-            onCancel={onShouldClose}
-            show={showDeleteAlert}
-            title={`${deleteTitle}`}
-            text={`Are you sure you want to delete <b>${name}</b>? You will not be able to undo this action`}
-            showCancelButton={true}
-            confirmButtonColor={"#DD6B55"}
-            confirmButtonText={"Delete"}
-            onConfirm={() => onConfirmDelete(_id, name)}
-            html={true} />
         </div>
+        <SweetAlert
+          onEscapeKey={onCloseDeleteAlert}
+          onOutsideClick={onCloseDeleteAlert}
+          onCancel={onCloseDeleteAlert}
+          show={deleteAlertOpen}
+          title={`${deleteTitle}`}
+          text={`Are you sure you want to delete <b>${name}</b>? You will not be able to undo this action`}
+          showCancelButton={true}
+          confirmButtonColor={"#DD6B55"}
+          confirmButtonText={"Delete"}
+          onConfirm={() => onConfirmDelete(_id, name)}
+          html={true} />
+      </div>
 
     );
   }
 }
-export default CardBody;
+
+Card.propTypes= {
+  _id: PropTypes.string,
+  menuIcon: PropTypes.element,
+  image: PropTypes.string,
+  menuItems: PropTypes.array,
+  name: PropTypes.string,
+  subname: PropTypes.string,
+  description: PropTypes.string,
+  footerButtons: PropTypes.array,
+  entryLink: PropTypes.string,
+  highlight: PropTypes.string,
+  extraClass: PropTypes.string,
+  isDeleted: PropTypes.bool,
+  onCloseDeleteAlert: PropTypes.func,
+  deleteAlertOpen: PropTypes.bool,
+  deleteTitle: PropTypes.string,
+  onConfirmDelete: PropTypes.func,
+  hideMenuItems: PropTypes.bool,
+  _score: PropTypes.string
+}
+export default Card;

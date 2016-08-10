@@ -1,31 +1,12 @@
 import React, { PropTypes } from 'react';
-import { Icons, Colors } from '../../resources';
 import { getCardUrl, getCloudinaryPath } from '../../utils/cloudinary';
-import CardBody from '../CardBody';
+import Card from '../Card';
 import CardHOC from '../CardHOC';
+import { Organizations, Technologies, ViewEntry, Projects, Attachments } from '../../resources/icons';
 
 const remove = () => {};
 
 class TechCard extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleConfirmDelete = this.handleConfirmDelete.bind(this);
-  }
-  handleConfirmDelete(_id, name) {
-    remove.call({
-      _id
-    }, (err, res) => {
-      if (err) {
-        console.log(err);
-      } else {
-        toastr.success(`<b>${name}</b> deleted!`, 'Success');
-        this.props.makeDeleted();
-      }
-    });
-
-    this.props.hideDeleteAlert();
-  }
-
   render() {
     const {
       _id,
@@ -40,25 +21,42 @@ class TechCard extends React.Component {
       image,
       highlight,
       hideMenuItems = false,
-      handleClickDelete,
-      showDeleteAlert,
+      onConfirmDelete,
+
+      deleteAlertOpen,
       hideDeleteAlert,
+      showDeleteAlert,
       isDeleted,
       ...props
     } = this.props;
-    const extraClass = `panel-${Colors.tech.status[status || 'default']}`;
+
+    let extraClass
+    switch (status) {
+      case 'draft':
+        extraClass = 'panel-danger'
+        break;
+      case 'review':
+        extraClass = 'panel-warning'
+        break;
+      case 'published':
+        extraClass = 'panel-success'
+        break;
+      default:
+        extraClass = 'panel-primary'
+    }
+    
     return (
-      <CardBody
+      <Card
         _id={_id}
-        menuIcon={Icons.collections.technologies}
-        image={getCardUrl(getCloudinaryPath(image))}
+        menuIcon={<Technologies />}
+        image={image}
         menuItems={[
           {
             label: 'Edit Technology',
             link: '#'
           }, {
             label: 'Delete Technology',
-            onClick: handleClickDelete
+            onClick: showDeleteAlert
           }
         ]}
         hideMenuItems={hideMenuItems}
@@ -67,7 +65,7 @@ class TechCard extends React.Component {
         description={shortDescription}
         footerButtons={[
           {
-            icon: 'fa fa-eye',
+            icon: <ViewEntry />,
             text: '',
             onClick: () => {},
             tooltipText: 'View entry',
@@ -80,19 +78,19 @@ class TechCard extends React.Component {
             tooltipIdentifier: 'status'
           },
           {
-            icon: Icons.collections.attachments,
+            icon: <Attachments />,
             text: attachmentsCount,
             tooltipText: `${attachmentsCount} attachments`,
             tooltipIdentifier: 'attachmentsCount'
           },
           {
-            icon: Icons.collections.projects,
+            icon: <Projects />,
             text: projectsCount,
             tooltipText: `${projectsCount} projects`,
             tooltipIdentifier: 'projectsCount'
           },
           {
-            icon: Icons.collections.organizations,
+            icon: <Organizations />,
             text: organizationsCount,
             tooltipText: `${organizationsCount} organizations`,
             tooltipIdentifier: 'organizationsCount'
@@ -101,14 +99,34 @@ class TechCard extends React.Component {
         entryLink={'#'}
         highlight={highlight}
         extraClass={extraClass}
-        showDeleteAlert={showDeleteAlert}
+        deleteAlertOpen={deleteAlertOpen}
         deleteTitle='Deleting Technology'
-        onShouldClose={hideDeleteAlert}
-        onConfirmDelete={this.handleConfirmDelete}
+        onCloseDeleteAlert={hideDeleteAlert}
+        onConfirmDelete={onConfirmDelete}
         isDeleted={isDeleted}
         {...props}
         />
     );
   }
+}
+
+TechCard.propTypes = {
+  _id: PropTypes.string,
+  status: PropTypes.string,
+  shortDescription: PropTypes.string,
+  description: PropTypes.string,
+  techId: PropTypes.string,
+  name: PropTypes.string,
+  attachmentsCount: PropTypes.number,
+  projectsCount: PropTypes.number,
+  organizationsCount: PropTypes.number,
+  image: PropTypes.string,
+  highlight: PropTypes.string,
+  hideMenuItems: PropTypes.bool,
+  onConfirmDelete: PropTypes.func,
+  deleteAlertOpen: PropTypes.bool,
+  hideDeleteAlert: PropTypes.func,
+  showDeleteAlert: PropTypes.func,
+  isDeleted: PropTypes.bool
 }
 export default CardHOC(TechCard);

@@ -9,7 +9,7 @@ storiesOf('Card', module)
   .add('tech card', () => (
     <Card
       _id={'abcedfr'}
-      menuIcon={<ViewEntry />}
+      menuIcon={<Technologies />}
       image={'http://www.placehold.it/600x400'}
       menuItems={[
         {
@@ -39,19 +39,19 @@ storiesOf('Card', module)
           tooltipIdentifier: 'status'
         },
         {
-          icon: <FaBeer />,
+          icon: <Attachments />,
           text: 2,
           tooltipText: `${2} attachments`,
           tooltipIdentifier: 'attachmentsCount'
         },
         {
-          icon: <FaBeer />,
+          icon: <Projects />,
           text: 3,
           tooltipText: `${3} projects`,
           tooltipIdentifier: 'projectsCount'
         },
         {
-          icon: <FaBeer />,
+          icon: <Organizations />,
           text: 4,
           tooltipText: `${4} organizations`,
           tooltipIdentifier: 'organizationsCount'
