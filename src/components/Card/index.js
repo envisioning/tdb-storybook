@@ -67,15 +67,13 @@ class Card extends React.Component {
               : null
             }
 
-            <div onClick={() => {console.log('oi')}}>
-              <h5 className="card-name">
-                <a href={entryLink}>
-                  <Highlight search={highlight}>
-                    {name}
-                  </Highlight>
-                </a>
-              </h5>
-            </div>
+            <h5 className="card-name">
+              <a href={entryLink}>
+                <Highlight search={highlight}>
+                  {name}
+                </Highlight>
+              </a>
+            </h5>
 
             <div className="card-description">
               <p>

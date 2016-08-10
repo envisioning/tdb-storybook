@@ -39,6 +39,7 @@ const Card = (ComposedComponent) => {
         isDeleted={isDeleted}
         deleteAlertOpen={deleteAlertOpen}
         hideDeleteAlert={this.hideDeleteAlert}
+        showDeleteAlert={this.showDeleteAlert}
         makeDeleted={this.makeDeleted}
         {...this.props}
         />
