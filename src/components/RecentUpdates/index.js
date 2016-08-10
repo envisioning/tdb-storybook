@@ -1,26 +1,31 @@
 import React, { PropTypes } from 'react'
 import Panel from '../Panel';
 import { RecentUpdates as RecentUpdatesIcon } from '../../resources/icons';
-import RecentUpdateItem from '../RecentUpdatesItem'
+import RecentUpdatesItem from '../RecentUpdatesItem'
+import EntityLabel from '../EntityLabel';
+
 const RecentUpdates = ({
-recentUpdates
+  recentUpdates = []
 }) => {
   return (
     <Panel
       header={<h2><RecentUpdatesIcon /> Recent Updates</h2>}>
-      {
-      recentUpdates.map(recentUpdate => (
-        <RecentUpdatesItem
-          {...recentUpdate}
-        />
-      ))
-      }
+      <div>
+        {
+        recentUpdates.map((recentUpdate, i) => (
+          <RecentUpdatesItem
+            key={i}
+            {...recentUpdate}
+          />
+        ))
+        }
+      </div>
     </Panel>
   )
 }
 
 RecentUpdates.propTypes = {
-  recentUpdates: PropTypes.array
+  recentUpdates: PropTypes.array.isRequired
 }
 export default RecentUpdates
 

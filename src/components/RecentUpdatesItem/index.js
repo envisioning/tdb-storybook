@@ -1,39 +1,115 @@
 import React, { PropTypes } from 'react'
 import EntityLabel from '../EntityLabel';
-import { Label } from 'react-bootstrap';
+import { Label, ListGroup, ListGroupItem } from 'react-bootstrap';
 import moment from 'moment';
+import NotificationBuilder from '../NotificationBuilder';
+import recentUpdatesTextConfig from '../../config/recent_updates_texts';
+import tokenizerComponentConfig from '../../config/tokenizer_component_config';
+const styles = {
+  container: {
+    //display: 'flex',
+    //flexDirection: 'row',
+    //justifyContent: 'space-between'
+  },
+  text: {
+    width: '100%',
+    //display: 'flex',
+    margin: '10px 0px 10px 5px',
+    // width: '100%',
+    wordWrap: 'break-word'
+  },
+  date: {
+    //float: 'right',
+    // fontStyle: 'italic',
+    // fontSize: '0.9em',
+  },
+  mainRow: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between'
+  },
+  detailsRow: {
 
-const RecentUpdatesItem = ({
-  docType,
-  docName,
-  docStatus,
-  docLink,
-  labelColor,
-  userName,
-  userLink,
-  action,
-  details,
-  showDetails,
-  date
-}) => {
-  return (
-    <li class="list-group-item">
-      <p>
-        <EntityLabel
-          type={docType}
-          status={docStatus}
-          text={docName} />
-        was {action} by {userName}
-      </p>
-      <Label>
-        {moment(date).fromNow()}
-      </Label>
-    </li>
-  )
+  }
 }
 
+class RecentUpdatesItem extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      showDetails: false
+    }
+
+    this.handleClickShowDetails = this.handleClickShowDetails.bind(this)
+  }
+
+  handleClickShowDetails() {
+    this.setState({
+      showDetails: !this.state.showDetails
+    })
+  }
+
+  getActionElement() {
+    const { details, action } = this.props
+    if (details) {
+      return <a href='#' onClick={this.handleClickShowDetails}>{action}</a>;
+    } else {
+      return <span>{action}</span>;
+    }
+  }
+
+  render () {
+    const {
+      type,
+      method,
+      userId,
+      docId,
+      date,
+      values
+    } = this.props
+
+    const { showDetails } = this.state
+
+    return (
+      <ListGroupItem style={styles.container}>
+        <div style={styles.mainRow}>
+          <span style={styles.text}>
+            <NotificationBuilder
+              dict={tokenizerComponentConfig}
+              template={recentUpdatesTextConfig[method]}
+              values={values}
+              />
+          </span>
+          <Label style={styles.date} bsStyle="success">
+            {moment(date).fromNow()}
+          </Label>
+        </div>
+        {
+          (false && showDetails) &&
+          <div style={styles.detailsRow}>
+            <ListGroup>
+              {
+                details.map((detail, i) => (
+                  <ListGroupItem
+                    key={i}
+                    dangerouslySetInnerHTML={{__html: detail}} />
+                ))
+              }
+            </ListGroup>
+          </div>
+        }
+      </ListGroupItem>
+    )
+  }
+}
+
+
+
 RecentUpdatesItem.PropTypes = {
-  docType: PropTypes.string.isRequired,
+  type: PropTypes.string.isRequired,
   docName: PropTypes.string.isRequired,
   labelColor: PropTypes.string.isRequired,
   userName: PropTypes.string.isRequired,

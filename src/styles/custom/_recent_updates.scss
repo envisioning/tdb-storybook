@@ -1,0 +1,55 @@
+//.recent-updates {
+//  .ps-container{
+//    position: relative;
+//    max-height: 199px;
+//  }
+//  .list-group-item {
+//    padding: 0px 15px;
+//    .flex;
+//    .y-center-flex;
+//    font-size: 12px;
+//
+//    p {
+//
+//    }
+//    .date {
+//        float: right;
+//        font-style: italic;
+//        font-size: 0.9em;
+//    }
+//  }
+//  .empty-message {
+//    .flex-direction-column;
+//    .x-center-flex;
+//    .y-center-flex;
+//    text-align:center;
+//    padding: 15px 20px 20px 20px;
+//    h3, i{
+//      color: #c3c3c3;
+//    }
+//    i {
+//      font-size: 50px;
+//    }
+//  }
+//
+//  .recent-updates-item {
+//    max-width: 200px;
+//    overflow: hidden;
+//    text-overflow: ellipsis;
+//  }
+//}
+//
+///*MOBILE MEDIA QUERY*/
+//.body-small {
+//
+//  /*In mobiles, .date will be absolute position, .list-group-item will be its position reference*/
+//  .recent-updates{
+//    .list-group-item {
+//      .date {
+//        position: absolute;
+//        bottom: 5px;
+//        right: 5px;
+//      }
+//    }
+//  }
+//}
