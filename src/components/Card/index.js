@@ -146,6 +146,6 @@ Card.propTypes= {
   deleteTitle: PropTypes.string,
   onConfirmDelete: PropTypes.func,
   hideMenuItems: PropTypes.bool,
-  _score: PropTypes.string
+  _score: PropTypes.number
 }
 export default Card;
