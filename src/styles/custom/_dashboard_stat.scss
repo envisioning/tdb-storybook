@@ -1,0 +1,26 @@
+.dashboard-ibox {
+  text-decation: none;
+  // cursor: pointer;
+  table {
+    margin-bottom: 0px;
+    font-size: 90%;
+    line-height: 1;
+    table-layout: fixed;
+    td {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+  .label {
+    white-space: nowrap;
+    &.label-outline {
+      background-color: #fff;
+      transition: all .5s;
+      border: 1px solid #c2c2c2;
+      &:hover {
+        color: #c2c2c2!important;
+      }
+    }
+  }
+}
