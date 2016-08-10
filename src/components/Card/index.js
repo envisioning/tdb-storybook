@@ -80,7 +80,7 @@ class Card extends React.Component {
             </h5>
 
             <div className="card-description">
-              <p style={showFullDescription ? {'-webkit-line-clamp': 'initial'} : null}>
+              <p style={showFullDescription ? {WebkitLineClamp: 'initial'} : null}>
                 <Highlight search={highlight}>
                   {description}
                 </Highlight>

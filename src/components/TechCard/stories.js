@@ -3,6 +3,7 @@ import { storiesOf, action } from '@kadira/storybook';
 import TechCard from './';
 import { getCloudinaryPath, getCardUrl} from '../../utils/cloudinary_url'
 
+
 const longText = `Aqui é Body Builder Ipsum PORRA! Birl!
 Ó o homem ali porra!, é 13 porra! Ele tá olhando pra gente. É 37 anos caralho! Vai subir árvore é o caralho porra! Aqui nóis constrói fibra, não é água com músculo.
 Bora caralho, você quer ver essa porra velho. É verão o ano todo vem cumpadi. Vamo monstro! Negativa Bambam negativa. Boraaa, Hora do Show Porra. É esse que a gente quer, é ele que nóis vamo buscar.
