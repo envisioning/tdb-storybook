@@ -1,4 +1,7 @@
 export default {
+  container: {
+    border: '1px solid rgba(0, 0, 0, 0.1)'
+  },
   cardBox: {
     padding: 0,
     zIndex: 1,

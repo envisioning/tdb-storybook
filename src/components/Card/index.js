@@ -31,10 +31,10 @@ class Card extends React.Component {
       style,
       ...props
     } = this.props;
-    return (
 
+    return (
       <div className="ibox card-box"
-        style={{border: '1px solid rgba(0, 0, 0, 0.1)', opacity: isDeleted ? 0.5 : 1, ...style}}>
+        style={{...styles.container, opacity: isDeleted ? 0.5 : 1, ...style}}>
         <div className={classNames('ibox-content', 'no-padding', 'card-label', extraClass)}>
           {
             !hideMenuItems &&
@@ -116,7 +116,7 @@ class Card extends React.Component {
           showCancelButton={true}
           confirmButtonColor={"#DD6B55"}
           confirmButtonText={"Delete"}
-          onConfirm={() => onConfirmDelete(_id, name)}
+          onConfirm={() => { onConfirmDelete(_id, name) }}
           html={true} />
       </div>
 

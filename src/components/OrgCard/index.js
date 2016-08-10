@@ -24,8 +24,9 @@ class OrganizationCard extends Card {
       hideDeleteAlert,
       showDeleteAlert,
       isDeleted,
+      ...props
     } = this.props;
-    
+
     return (
       <Card
         _id={_id}
@@ -78,12 +79,13 @@ class OrganizationCard extends Card {
         entryLink={entryLink}
         highlight={highlight}
 
-        showDeleteAlert={showDeleteAlert}
         deleteTitle='Deleting Organization'
+        showDeleteAlert={showDeleteAlert}
         onCloseDeleteAlert={hideDeleteAlert}
         deleteAlertOpen={deleteAlertOpen}
         onConfirmDelete={onConfirmDelete}
         isDeleted={isDeleted}
+        {...props}
         />
     );
   }
