@@ -13,6 +13,7 @@ function loadStories() {
   require('../src/components/Panel/stories');
   require('../src/components/CardGrid/stories');
   require('../src/components/RecentUpdates/stories');
+  require('../src/components/EntityLabel/stories');
   // require as many stories as you need.
 }
 

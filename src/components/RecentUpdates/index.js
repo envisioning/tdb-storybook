@@ -2,7 +2,9 @@ import React, { PropTypes } from 'react'
 import Panel from '../Panel';
 import { RecentUpdates as RecentUpdatesIcon } from '../../resources/icons';
 import RecentUpdateItem from '../RecentUpdatesItem'
-const RecentUpdates = (props) => {
+const RecentUpdates = ({
+recentUpdates
+}) => {
   return (
     <Panel
       header={<h2><RecentUpdatesIcon /> Recent Updates</h2>}>

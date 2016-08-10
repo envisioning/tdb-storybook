@@ -12,6 +12,6 @@ export const getEntityColor = (type, status) => {
     case 'technologies':
       return getTechColor(status)
     default:
-      return 'primary'
+      return 'default'
   }
 }

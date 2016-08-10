@@ -6,7 +6,10 @@ import { getEntityColor } from '../../utils/entity_color';
 const EntityLabel = ({
   type,
   status,
-  text
+  text,
+  style,
+  truncate = false,
+  ...props
 }) => {
   const getIcon = (type) => {
     switch (type) {
@@ -17,12 +20,13 @@ const EntityLabel = ({
     }
   }
 
-  const icon = getIcon();
+  const icon = getIcon(type);
   const color = getEntityColor(type, status);
 
+  const truncateStyle = truncate ? {overflow: 'hidden', textOverflow: 'ellipsis'} : {}
   return (
-    <Label bsStyle={color}>
-        {icon} {text}
+    <Label bsStyle={color} style={{display: 'inline-block', ...style, ...truncateStyle}} {...props}>
+        {icon} <span>{text}</span>
     </Label>
   )
 }
@@ -30,6 +34,7 @@ const EntityLabel = ({
 EntityLabel.propTypes = {
   type: PropTypes.string.isRequired,
   status: PropTypes.string,
-  text: PropTypes.string.isRequired
+  text: PropTypes.string.isRequired,
+  truncate: PropTypes.bool.isRequired
 }
 export default EntityLabel
