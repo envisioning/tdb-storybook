@@ -78,7 +78,7 @@ class RecentUpdatesItem extends React.Component {
 
     const mergedStyle = Object.assign({}, styles.container, style)
     return (
-      <ListGroupItem style={mergedStyle} {...props}>
+      <ListGroupItem style={mergedStyle} {...props} onMouseHover={() => console.log('hover')}>
         <div style={styles.mainRow}>
           <span style={styles.text}>
             <NotificationBuilder

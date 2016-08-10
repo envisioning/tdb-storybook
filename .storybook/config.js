@@ -14,6 +14,8 @@ function loadStories() {
   require('../src/components/CardGrid/stories');
   require('../src/components/RecentUpdates/stories');
   require('../src/components/EntityLabel/stories');
+  require('../src/components/SearchInput/stories');
+  require('../src/components/SearchMetadata/stories');
   // require as many stories as you need.
 }
 

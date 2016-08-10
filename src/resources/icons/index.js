@@ -21,3 +21,8 @@ export const Impact = Rocket
 export const Collections = Archive
 export const ViewEntry = Eye
 export const RecentUpdates = Bell
+
+export Loading from 'react-icons/lib/fa/spinner'
+export Search from 'react-icons/lib/fa/search'
+export Error from 'react-icons/lib/fa/bug'
+export Filter from 'react-icons/lib/fa/filter'
