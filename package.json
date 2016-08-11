@@ -77,6 +77,7 @@
     "react-custom-scrollbars": "^4.0.0",
     "react-dom": "^0.14.6",
     "react-dropdown": "^1.1.0",
+    "react-dropzone": "^3.5.3",
     "react-fa": "^4.1.2",
     "react-flexbox-grid": "^0.10.2",
     "react-highlighter": "^0.3.3",

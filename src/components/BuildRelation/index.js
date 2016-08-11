@@ -146,15 +146,6 @@ const BuildRelation = ({
 
       </Modal.Footer>
     </Modal>
-    // <div style={styles.container}>
-    //   <div style={styles.header}>
-    //     {hostIcon} {foreignIcon}
-    //   </div>
-
-    //   <div style={styles.footer}>
-
-    //   </div>
-    // </div>
   )
 }
 

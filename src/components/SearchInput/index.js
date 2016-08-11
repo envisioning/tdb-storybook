@@ -9,6 +9,7 @@ const SearchInput = ({
   error,
   onIconClick,
   onFilterClick,
+  buttonContent = <Filter />,
   onChange
 }) => {
   if (onChange && typeof onChange === 'function') {
@@ -37,7 +38,7 @@ const SearchInput = ({
 
           <InputGroup.Button>
           <Button bsStyle="primary" onClick={onFilterClick}>
-            <Filter />
+            {buttonContent}
           </Button>
         </InputGroup.Button>
 
