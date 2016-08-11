@@ -28,6 +28,9 @@ function loadStories() {
   require('../src/components/DisplayRelations/stories');
   require('../src/components/ResultsList/stories');
   require('../src/components/BuildRelation/stories');
+  require('../src/components/ProjectEditForm/stories');
+  require('../src/components/ProjectQuickAddForm/stories');
+  require('../src/components/OrganizationEditForm/stories');
   // require as many stories as you need.
 }
 

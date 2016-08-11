@@ -110,7 +110,7 @@ class Card extends React.Component {
             </div>
           </div>
         </div>
-        <SweetAlert
+        {/*<SweetAlert
           onEscapeKey={onCloseDeleteAlert}
           onOutsideClick={onCloseDeleteAlert}
           onCancel={onCloseDeleteAlert}
@@ -121,7 +121,7 @@ class Card extends React.Component {
           confirmButtonColor={"#DD6B55"}
           confirmButtonText={"Delete"}
           onConfirm={() => { onConfirmDelete(_id, name) }}
-          html={true} />
+          html={true} />*/}
       </div>
 
     );

@@ -3,13 +3,8 @@ import React, { PropTypes } from 'react'
 import Select from 'react-select';
 import Slider from 'rc-slider';
 import { FormGroup } from 'react-bootstrap';
+import { ORGANIZATIONS_TYPES } from '../../resources/options';
 
-const TYPE_OPTIONS = [
-  { value: 'academic', label: 'Academic' },
-  { value: 'non-profit', label: 'Non-Profit' },
-  { value: 'governamental', label: 'Governamental' },
-  { value: 'private', label: 'Private' }
-];
 
 const OrgFilterForm = ({
   type,
@@ -22,7 +17,7 @@ const OrgFilterForm = ({
         <Select
           name="type"
           multi={true}
-          options={TYPE_OPTIONS}
+          options={ORGANIZATIONS_TYPES}
           value={type}
           onChange={onChangeType}
         />
