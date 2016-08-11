@@ -43,10 +43,13 @@ const ResultsListItem = ({
   image,
   description,
   highlight = '',
-  buttonRightElement
+  buttonRightElement,
+  style,
+  ...props
 }) => {
+  const mergedStyle = Object.assign({}, styles.container, style)
   return (
-    <ListGroupItem style={styles.container}>
+    <ListGroupItem style={mergedStyle}>
       <div style={styles.imageContainer}>
         <SafeImage src={image} style={styles.image} />
       </div>

@@ -4,6 +4,7 @@ import 'sweetalert/dist/sweetalert.css';
 import '../src/styles/style.scss'
 import 'react-select/dist/react-select.css';
 import 'rc-slider/assets/index.css'
+import 'react-bootstrap-modal/lib/styles/rbm-patch.css'
 function loadStories() {
   require('../src/components/TechCard/stories.js');
   require('../src/components/OrgCard/stories');
@@ -25,6 +26,7 @@ function loadStories() {
   require('../src/components/InviteUserForm/stories');
   require('../src/components/DisplayRelations/stories');
   require('../src/components/ResultsList/stories');
+  require('../src/components/BuildRelation/stories');
   // require as many stories as you need.
 }
 

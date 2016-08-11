@@ -22,7 +22,7 @@ class Card extends React.Component {
       description,
       footerButtons,
       entryLink,
-      highlight,
+      highlight = '',
       extraClass,
       isDeleted,
       onCloseDeleteAlert,

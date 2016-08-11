@@ -11,7 +11,10 @@ const SearchInput = ({
   onFilterClick,
   onChange
 }) => {
-  onChange = _.debounce(onChange, 250)
+  if (onChange && typeof onChange === 'function') {
+    onChange = _.debounce(onChange, 250)
+  }
+
   let iconElement;
 
   if (error === true) {
@@ -33,7 +36,7 @@ const SearchInput = ({
           <FormControl type="text" onChange={onChange}/>
 
           <InputGroup.Button>
-          <Button bsStyle="success" onClick={onFilterClick}>
+          <Button bsStyle="primary" onClick={onFilterClick}>
             <Filter />
           </Button>
         </InputGroup.Button>
@@ -44,4 +47,13 @@ const SearchInput = ({
   )
 }
 
+
+SearchInput.propTypes = {
+  value: PropTypes.string,
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
+  onIconClick: PropTypes.func,
+  onFilterClick: PropTypes.func,
+  onChange: PropTypes.func
+}
 export default SearchInput
