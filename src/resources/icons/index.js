@@ -21,3 +21,13 @@ export const Impact = Rocket
 export const Collections = Archive
 export const ViewEntry = Eye
 export const RecentUpdates = Bell
+
+export Loading from 'react-icons/lib/fa/spinner'
+export Search from 'react-icons/lib/fa/search'
+export Error from 'react-icons/lib/fa/bug'
+export Filter from 'react-icons/lib/fa/filter'
+export SortAscendent from 'react-icons/lib/fa/sort-asc'
+export SortDescendent from 'react-icons/lib/fa/sort-desc'
+export BuildRelation from 'react-icons/lib/fa/plus'
+export ArrowRight from 'react-icons/lib/fa/arrow-right';
+export Remove from 'react-icons/lib/fa/trash';
