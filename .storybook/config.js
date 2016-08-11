@@ -22,6 +22,9 @@ function loadStories() {
   require('../src/components/ProjectFilterForm/stories');
   require('../src/components/AttachmentFilterForm/stories');
   require('../src/components/OrgFilterForm/stories');
+  require('../src/components/InviteUserForm/stories');
+  require('../src/components/DisplayRelations/stories');
+  require('../src/components/ResultsList/stories');
   // require as many stories as you need.
 }
 
