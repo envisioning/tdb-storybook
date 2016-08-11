@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react'
 import SearchInput from '../SearchInput'
 import ResultsList from '../ResultsList'
-import { Button } from 'react-bootstrap';
-import Modal from 'react-bootstrap-modal'
-import { ArrowRight } from '../../resources/icons';
+import { Button, Modal } from 'react-bootstrap';
+import { ArrowRight, Add, Remove } from '../../resources/icons';
 
 const styles = {
   container: {
@@ -50,7 +49,8 @@ const styles = {
 const BuildRelation = ({
   hostIconElement,
   foreignIconElement,
-  results,
+  resultsLeft,
+  resultsRight,
   searchText,
   createButtonText,
   displayForm = false,
@@ -68,10 +68,11 @@ const BuildRelation = ({
   })
   return (
     <Modal
+      bsSize="lg"
       show={true}
       onHide={() => console.log('hide!')}
-      aria-labelledby="ModalHeader"
-      style={styles.modal}
+      //aria-labelledby="ModalHeader"
+      dialogClassName='x-large-modal'
     >
       <Modal.Header style={styles.header}>
         <div style={styles.iconLine}>
@@ -87,18 +88,43 @@ const BuildRelation = ({
           </div>
           :
           <div>
-            <SearchInput
-              value={searchText}
-              />
-            {
-              results.length ?
-              <ResultsList
-                style={{marginBottom: 0}}
-                results={results} />
-              :
-              <h3>No results found. Would you like to <a href="#" onClick={onCreateClick}>create a new one ?</a></h3>
-            }
-
+            <div style={{display: 'flex', flexDirection: 'row'}}>
+              <div style={{flexGrow: 1, width: '50%', padding: 5}}>
+              {
+                <div>
+                  <SearchInput
+                    value={searchText}
+                    />
+                  <ResultsList
+                    showRightButton={true}
+                    style={{marginBottom: 0}}
+                    rightButtonElement={<Button bsStyle="success" bsSize="xsmall"><Add /></Button>}
+                    results={resultsLeft} />
+                </div>
+                // :
+                // <h3>No results found. Would you like to <a href="#" onClick={onCreateClick}>create a new one ?</a></h3>
+              }
+              </div>
+              <div style={{flexGrow: 1, width: '50%', padding: 5}}>
+                {
+                  <div>
+                    <Button
+                      style={{marginBottom: 15, float: 'right'}}
+                      bsStyle="primary"
+                      onClick={onCreateClick}
+                    >
+                      <Add style={{marginRight: 5}}/>
+                      {createButtonText}
+                    </Button>
+                    <ResultsList
+                      showRightButton={true}
+                      rightButtonElement={<Button bsStyle="danger" bsSize="xsmall"><Remove /></Button>}
+                      style={{marginBottom: 0, marginLeft: 5}}
+                      results={resultsRight} />
+                  </div>
+                }
+              </div>
+            </div>
           </div>
         }
 
@@ -113,8 +139,7 @@ const BuildRelation = ({
           </div>
           :
           <div>
-            <Button bsStyle="primary" onClick={onCreateClick}>{createButtonText}</Button>
-            <Button bsStyle="default">Cancel</Button>
+            <Button bsStyle="default">Close</Button>
           </div>
         }
 

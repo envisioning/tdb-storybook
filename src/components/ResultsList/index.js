@@ -2,36 +2,41 @@ import React, { PropTypes } from 'react'
 import { ListGroup, Button } from 'react-bootstrap';
 import ResultsListItem from '../ResultsListItem';
 import Infinite from 'react-infinite';
-import { BuildRelation, Remove } from '../../resources/icons'
+import { Scrollbars } from 'react-custom-scrollbars';
+
 const ResultsList = ({
   results,
   highlight,
+  showRightButton,
+  rightButtonElement,
   style,
   ...props
 }) => {
+
+
   return (
     <ListGroup style={style} {...props}>
-      <Infinite
+      {/*<Infinite
         containerHeight={400}
         elementHeight={100}
         infiniteLoadBeginEdgeOffset={300}
         loadingSpinnerDelegate={<div>Loading...</div>}
         onInfiniteLoad={() => console.log('infinite')}
-      >
+      >*/}
+      <Scrollbars autoHeight autoHeightMin={500}>
         {
           results.map((result, i) => (
             <ResultsListItem
               style={{height: 100}}
               highlight={highlight}
-              buttonRightElement={result.relationMade ?
-                <Button bsStyle="danger" bsSize="xsmall"><Remove /></Button> :
-                <Button bsStyle="success" bsSize="xsmall"><BuildRelation /></Button>
-              }
+              rightButtonElement={rightButtonElement}
               key={i}
               {...result} />
           ))
         }
-      </Infinite>
+        </Scrollbars>
+      {/*</Infinite>*/}
+
     </ListGroup>
   )
 }

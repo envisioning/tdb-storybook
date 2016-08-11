@@ -4,18 +4,20 @@ import BuildRelation from './';
 import { Technologies, Organizations } from '../../resources/icons'
 import { mockA } from '../CardGrid/mock';
 import { getCardUrl, getCloudinaryPath } from '../../utils/cloudinary_url'
-const results = mockA.slice(0, 10).map((res, i) => ({
+const results = mockA.slice(0, 30).map((res, i) => ({
   ...res,
   image: getCardUrl(getCloudinaryPath(res.image)),
-  relationMade: i % 2 === 0
 }));
 
+const resultsLeft = results.filter((a, i) => i % 2 === 0)
+const resultsRight = results.filter((a, i) => i % 2 !== 0)
 storiesOf('Build Relation', module)
   .add('default', () => (
     <BuildRelation
       hostIconElement={<Technologies />}
       foreignIconElement={<Organizations />}
-      results={results}
+      resultsLeft={resultsLeft}
+      resultsRight={resultsRight}
       searchText={'searching'}
       createButtonText={'Create new Organization'}
       onCreateClick={action('on create click')}
@@ -25,7 +27,6 @@ storiesOf('Build Relation', module)
     <BuildRelation
       hostIconElement={<Technologies />}
       foreignIconElement={<Organizations />}
-      results={results}
       searchText={'searching'}
       createButtonText={'Create new Organization'}
       onCreateClick={action('on create click')}
@@ -38,7 +39,8 @@ storiesOf('Build Relation', module)
     <BuildRelation
       hostIconElement={<Technologies />}
       foreignIconElement={<Organizations />}
-      results={[]}
+      resultsLeft={[]}
+      resultsRight={resultsRight}
       searchText={'searching'}
       createButtonText={'Create new Organization'}
       onCreateClick={action('onCreateClick')}
