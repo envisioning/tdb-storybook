@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 import SearchInput from '../SearchInput'
 import { Button, Modal, ProgressBar } from 'react-bootstrap';
 import Dropzone from 'react-dropzone';
-import { File } from '../../resources/icons';
+import { File, Download } from '../../resources/icons';
 
 const styles = {
   body: {
@@ -82,6 +82,7 @@ const FileInput = ({
             value={''}
             loading={false}
             errorfalse
+            buttonContent={<div><Download style={{marginRight: 5}}/><span>Fetch</span></div>}
             onIconClick={() => console.log('icon click')}
             onFilterClick={() => console.log('filter click')}
             onChange={() => console.log('change')}
@@ -89,8 +90,12 @@ const FileInput = ({
         </div>
 
         <div style={styles.progressBarContainer}>
+
           {showProgress &&
-            <ProgressBar style={{width: '100%'}} now={progress} />
+            <div style={{textAlign: 'center'}}>
+              <h4>Progress</h4>
+              <ProgressBar style={{width: '100%'}} now={progress} label={`${progress}%`} />
+            </div>
           }
         </div>
       </Modal.Body>

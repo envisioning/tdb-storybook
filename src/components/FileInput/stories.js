@@ -4,5 +4,8 @@ import FileInput from './';
 
 storiesOf('FileInput', module)
   .add('default', () => (
-    <FileInput />
+    <FileInput
+      showProgress={true}
+      progress={10}
+      />
   ))
