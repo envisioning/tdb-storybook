@@ -31,6 +31,7 @@ function loadStories() {
   require('../src/components/ProjectEditForm/stories');
   require('../src/components/ProjectQuickAddForm/stories');
   require('../src/components/OrganizationEditForm/stories');
+  require('../src/components/FileInput/stories');
   // require as many stories as you need.
 }
 

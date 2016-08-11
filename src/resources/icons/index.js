@@ -32,3 +32,4 @@ export BuildRelation from 'react-icons/lib/fa/plus'
 export Add from 'react-icons/lib/fa/plus'
 export ArrowRight from 'react-icons/lib/fa/arrow-right';
 export Remove from 'react-icons/lib/fa/trash';
+export File from 'react-icons/lib/fa/file'
