@@ -45,18 +45,33 @@ const styles = {
     marginRight: 10,
     color: 'rgba(0,0,0,0.3)',
     fontStyle: 'italic'
+  },
+  filePreviewContainer: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20
+  },
+  filePreview: {
+    width: 100,
+    height: 100,
+    marginLeft: 5,
+    marginRight: 5
   }
 }
 
 const FileInput = ({
-  onDrop,
-  progress = 10,
-  showProgress
+  onSelectFiles,
+  progress,
+  showProgress,
+  onFetch,
+  files,
+  show
 }) => {
   return (
     <Modal
       bsSize="lg"
-      show={true}
+      show={show}
       onHide={() => console.log('hide!')}
     >
       <Modal.Header>
@@ -64,12 +79,21 @@ const FileInput = ({
       </Modal.Header>
       <Modal.Body style={styles.body}>
         <div style={styles.fromFileContainer}>
-          <Dropzone onDrop={onDrop}>
+          <Dropzone onDrop={onSelectFiles}>
             <div style={styles.dropzone}>
               <File size={48} color="#d3d3d3"/>
             </div>
           </Dropzone>
           <h5>Drop files or click to open file prompt</h5>
+          {
+            files.length !== 0 && <div style={styles.filePreviewContainer}>
+              {
+                files.map((file, i) => (
+                  <img src={file} style={styles.filePreview} key={i} />
+                ))
+              }
+            </div>
+          }
         </div>
         <div style={styles.divider}>
           <div style={styles.dividerRule} />
@@ -83,14 +107,11 @@ const FileInput = ({
             loading={false}
             errorfalse
             buttonContent={<div><Download style={{marginRight: 5}}/><span>Fetch</span></div>}
-            onIconClick={() => console.log('icon click')}
-            onFilterClick={() => console.log('filter click')}
-            onChange={() => console.log('change')}
+            onFilterClick={onFetch}
              />
         </div>
 
         <div style={styles.progressBarContainer}>
-
           {showProgress &&
             <div style={{textAlign: 'center'}}>
               <h4>Progress</h4>
@@ -104,6 +125,15 @@ const FileInput = ({
       </Modal.Footer>
     </Modal>
   )
+}
+
+FileInput.propTypes = {
+  onSelectFiles: PropTypes.func,
+  progress: PropTypes.number,
+  showProgress: PropTypes.bool,
+  onFetch: PropTypes.func,
+  files: PropTypes.array,
+  show: PropTypes.bool
 }
 
 export default FileInput

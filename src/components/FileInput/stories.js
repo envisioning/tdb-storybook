@@ -7,5 +7,7 @@ storiesOf('FileInput', module)
     <FileInput
       showProgress={true}
       progress={10}
+      show={true}
+      files={[]}
       />
   ))
