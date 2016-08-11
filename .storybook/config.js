@@ -22,6 +22,7 @@ function loadStories() {
   require('../src/components/Sort/stories');
   require('../src/components/TechFilterForm/stories');
   require('../src/components/ProjectFilterForm/stories');
+  require('../src/components/AttachmentForm/stories');
   require('../src/components/AttachmentFilterForm/stories');
   require('../src/components/OrgFilterForm/stories');
   require('../src/components/InviteUserForm/stories');
