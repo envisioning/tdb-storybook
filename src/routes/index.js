@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { Router, Route, Link, browserHistory } from 'react-router'
+import { IndexRoute, Router, Route, Link, browserHistory } from 'react-router'
 import App from '../components/App';
 import MainDashboard from '../pages/MainDashboard';
 import AttachmentEdit from '../pages/AttachmentEdit';
@@ -26,7 +26,7 @@ const Routes = (props) => {
   return (
     <Router history={browserHistory}>
       <Route path="/" component={App}>
-        <Route path="main" component={MainDashboard}/>
+        <IndexRoute component={MainDashboard}/>
         <Route path="a" component={AttachmentsDashboard} />
         <Route path="a/:id/entry" component={AttachmentEntry} />
         <Route path="a/:id/edit" component={AttachmentEdit} />
