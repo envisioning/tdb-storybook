@@ -1,9 +1,8 @@
 import React, { PropTypes } from 'react'
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 import ResultsListItem from '../ResultsListItem';
-
 import Infinite from 'react-infinite';
-
+import { BuildRelation, Remove } from '../../resources/icons'
 const ResultsList = ({
   results,
   highlight,
@@ -24,6 +23,10 @@ const ResultsList = ({
             <ResultsListItem
               style={{height: 100}}
               highlight={highlight}
+              buttonRightElement={result.relationMade ?
+                <Button bsStyle="danger" bsSize="xsmall"><Remove /></Button> :
+                <Button bsStyle="success" bsSize="xsmall"><BuildRelation /></Button>
+              }
               key={i}
               {...result} />
           ))

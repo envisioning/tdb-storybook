@@ -4,7 +4,11 @@ import BuildRelation from './';
 import { Technologies, Organizations } from '../../resources/icons'
 import { mockA } from '../CardGrid/mock';
 import { getCardUrl, getCloudinaryPath } from '../../utils/cloudinary_url'
-const results = mockA.slice(0, 10).map(res => ({...res, image: getCardUrl(getCloudinaryPath(res.image))}));
+const results = mockA.slice(0, 10).map((res, i) => ({
+  ...res,
+  image: getCardUrl(getCloudinaryPath(res.image)),
+  relationMade: i % 2 === 0
+}));
 
 storiesOf('Build Relation', module)
   .add('default', () => (

@@ -16,12 +16,15 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
     paddingLeft: 10,
+    paddingRight: 10,
     paddingTop: 10,
     paddingBottom: 10,
     overflow: 'hidden'
   },
   buttonContainer: {
-    width: 100
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   image: {
     width: 75,
@@ -65,7 +68,7 @@ const ResultsListItem = ({
           </Highlight>
         </span>
       </div>
-      <div style={styles.textContainer}>
+      <div style={styles.buttonContainer}>
         {buttonRightElement}
       </div>
     </ListGroupItem>
