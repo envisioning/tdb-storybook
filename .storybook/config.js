@@ -12,6 +12,7 @@ function loadStories() {
   require('../src/components/ProjectCard/stories');
   require('../src/components/DashboardStat/stories');
   require('../src/components/TechnologiesDashboardStat/stories');
+  require('../src/components/ProjectsDashboardStat/stories');
   require('../src/components/Panel/stories');
   require('../src/components/CardGrid/stories');
   require('../src/components/RecentUpdates/stories');

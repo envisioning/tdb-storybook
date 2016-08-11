@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Panel from '../Panel';
+import { Panel, PanelTitle, PanelHeader, PanelBody } from '../Panel';
 import { RecentUpdates as RecentUpdatesIcon } from '../../resources/icons';
 import RecentUpdatesItem from '../RecentUpdatesItem'
 import EntityLabel from '../EntityLabel';
@@ -10,24 +10,32 @@ const RecentUpdates = ({
   recentUpdates = []
 }) => {
   return (
-    <Panel
-      header={<h2><RecentUpdatesIcon /> Recent Updates</h2>}>
-      <Infinite
-        containerHeight={400}
-        elementHeight={60}
-        infiniteLoadBeginEdgeOffset={300}
-        loadingSpinnerDelegate={<div>Loading...</div>}
-        onInfiniteLoad={() => console.log('infinite')}>
-        {
-        recentUpdates.map((recentUpdate, i) => (
-          <RecentUpdatesItem
-            style={{minHeight: 60}}
-            key={i}
-            {...recentUpdate}
-          />
-        ))
+    <Panel>
+      <PanelHeader
+        title={
+          <PanelTitle
+            iconElementLeft={<RecentUpdatesIcon />}
+            title={"Recent Updates"} />
         }
-      </Infinite>
+      />
+      <PanelBody>
+        <Infinite
+          containerHeight={400}
+          elementHeight={60}
+          infiniteLoadBeginEdgeOffset={300}
+          loadingSpinnerDelegate={<div>Loading...</div>}
+          onInfiniteLoad={() => console.log('infinite')}>
+          {
+          recentUpdates.map((recentUpdate, i) => (
+            <RecentUpdatesItem
+              style={{minHeight: 60}}
+              key={i}
+              {...recentUpdate}
+            />
+          ))
+          }
+        </Infinite>
+      </PanelBody>
     </Panel>
   )
 }
