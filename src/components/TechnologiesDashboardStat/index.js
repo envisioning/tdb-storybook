@@ -13,7 +13,7 @@ const TechnologiesDashboardStat = ({
   newestLink
 }) => (
   <DashboardStat
-    icon={<Technologies />}
+    iconElementLeft={<Technologies />}
     title="Technologies"
     addText="Add a new Technology"
     addLink={addLink}>
