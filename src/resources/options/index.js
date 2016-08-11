@@ -1,3 +1,25 @@
+export const ATTACHMENTS_TYPES = [
+  {
+    label: 'Article',
+    value: 'article'
+  },
+  {
+    label: 'Media',
+    value: 'media'
+  },
+  {
+    label: 'News',
+    value: 'news'
+  },
+  {
+    label: 'Product Page',
+    value: 'product_page'
+  },
+  {
+    label: 'Whitepaper',
+    value: 'whitepaper'
+  },
+]
 export const COUNTRIES =  [
   {
     label: 'Afghanistan',
