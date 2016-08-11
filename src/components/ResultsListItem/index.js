@@ -15,6 +15,7 @@ const styles = {
   textContainer: {
     display: 'flex',
     flexDirection: 'column',
+    width: '100%',
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 10,
@@ -46,7 +47,7 @@ const ResultsListItem = ({
   image,
   description,
   highlight = '',
-  buttonRightElement,
+  rightButtonElement,
   style,
   ...props
 }) => {
@@ -69,7 +70,7 @@ const ResultsListItem = ({
         </span>
       </div>
       <div style={styles.buttonContainer}>
-        {buttonRightElement}
+        {rightButtonElement}
       </div>
     </ListGroupItem>
   )
@@ -80,6 +81,6 @@ ResultsListItem.propTypes = {
   image: PropTypes.string,
   description: PropTypes.string,
   highlight: PropTypes.string,
-  buttonRightElement: PropTypes.element
+  rightButtonElement: PropTypes.element
 }
 export default ResultsListItem

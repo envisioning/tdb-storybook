@@ -29,5 +29,6 @@ export Filter from 'react-icons/lib/fa/filter'
 export SortAscendent from 'react-icons/lib/fa/sort-asc'
 export SortDescendent from 'react-icons/lib/fa/sort-desc'
 export BuildRelation from 'react-icons/lib/fa/plus'
+export Add from 'react-icons/lib/fa/plus'
 export ArrowRight from 'react-icons/lib/fa/arrow-right';
 export Remove from 'react-icons/lib/fa/trash';
