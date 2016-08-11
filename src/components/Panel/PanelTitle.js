@@ -16,13 +16,14 @@ class PanelTitle extends React.Component {
   static propTypes = {
     iconElementLeft: PropTypes.element,
     title: PropTypes.string.isRequired,
+    iconElementRight: PropTypes.element,
     style: PropTypes.object,
   }
 
   render () {
-    const {iconElementLeft, title, style, ...other} = this.props
+    const {iconElementLeft, title, iconElementRight, style, ...other} = this.props
 
-    const iconElementLeftWithStyles = iconElementLeft 
+    const iconElementLeftWithStyles = iconElementLeft
     ? React.cloneElement(iconElementLeft , {
       style: styles.iconElementLeft
     })
@@ -30,7 +31,7 @@ class PanelTitle extends React.Component {
 
     return (
       <h3 style={Object.assign(styles.root, style)} {...other}>
-        {iconElementLeftWithStyles} {title}
+        {iconElementLeftWithStyles} {title} 
       </h3>
     )
   }

@@ -2,7 +2,7 @@
 import React, { PropTypes } from 'react'
 import CardGrid from '../CardGrid'
 import { BuildRelation } from '../../resources/icons'
-import Panel from '../Panel'
+import { Panel, PanelTitle, PanelHeader, PanelBody } from '../Panel'
 
 const DisplayRelations = ({
   iconElement,
@@ -11,16 +11,26 @@ const DisplayRelations = ({
   results
 }) => {
   return (
-    <Panel
-      header={<h2>{iconElement} {title} <BuildRelation onClick={onClickBuildRelation}/></h2>} >
-      {results.length ?
-      <CardGrid
-        results={results} />
-      :
-      <h3 style={{textAlign: 'center', margin: 20}}>
-        There are no relations yet. Would you like to <a href="#" onClick={onClickBuildRelation}>create one</a> ?
-      </h3>
-      }
+    <Panel>
+      <PanelHeader
+        title={
+          <PanelTitle
+            iconElementLeft={iconElement}
+            title={title} />}
+        iconElementRight={
+          <BuildRelation onClick={onClickBuildRelation} />
+        }>
+      </PanelHeader>
+      <PanelBody>
+        {results.length ?
+        <CardGrid
+          results={results} />
+        :
+        <h3 style={{textAlign: 'center', margin: 20}}>
+          There are no relations yet. Would you like to <a href="#" onClick={onClickBuildRelation}>create one</a> ?
+        </h3>
+        }
+      </PanelBody>
     </Panel>
   )
 }

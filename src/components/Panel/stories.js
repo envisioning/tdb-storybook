@@ -38,7 +38,7 @@ storiesOf('Panel', module)
         title="This is my title">
       </PanelTitle>
   ))
-  .add('PanelTitle with Icon', () => (
+  .add('PanelTitle with Left Icon', () => (
       <PanelTitle
         iconElementLeft={<Technologies />}
         title="This is my title">

@@ -13,36 +13,40 @@ const styles = {
     minHeight: '56px',
     justifyContent: 'space-between'
   },
-  title: {
+  titleContainer: {
     marginTop: '5px'
+  },
+  iconElementRightContainer: {
+    float: 'right',
+    marginTop: '3px'
   }
 }
 
 class PanelHeader extends React.Component {
   static propTypes = {
     /**
-    * Can be used to render a title in Card Header.
+    * Can be used to render a title in Panel Header.
     */
-   title: PropTypes.node,
-    /**
-    * Override the inline-styles of the title.
-    */
-    titleStyle: PropTypes.object,
-    /**
-    * Can be used to render elements inside the PanelHeader.
-    */
-    children: PropTypes.node,
+    title: PropTypes.node,
     /**
     * Override the inline-styles of the root element.
     */
     style: PropTypes.object,
+    /**
+    * Can be used to render a icon on the right of the Panel Header.
+    */
+    iconElementRight: PropTypes.element
   }
   render () {
-    const { title, titleStyle, style, children, ...other} = this.props
+    const { title, iconElementRight, style, children, ...other} = this.props
+
     return (
       <div style={Object.assign(styles.root, style)} {...other}>
-        <span style={Object.assign(styles.title, titleStyle)}>
+        <span style={styles.titleContainer}>
           {title}
+        </span>
+        <span style={styles.iconElementRightContainer}>
+          {iconElementRight}
         </span>
         {children}
       </div>
