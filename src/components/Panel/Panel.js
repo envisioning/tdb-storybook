@@ -18,7 +18,8 @@ class Panel extends React.Component {
       clear: 'both',
       marginBottom: '25px',
       marginTop: 0,
-      padding: 0
+      padding: 0,
+      boxShadow: '2px 2px 11px 0px rgba(0, 0 ,0 , 0.1)'
     }, style)
 
     return (

@@ -16,6 +16,14 @@ const AttachmentForm = ({
           />
         <FormControl.Feedback />
       </FormGroup>
+      <FormGroup controlId="title">
+        <ControlLabel>Title</ControlLabel>
+        <FormControl
+          type="text"
+          placeholder=""
+          />
+        <FormControl.Feedback />
+      </FormGroup>
       <FormGroup controlId="status">
         <ControlLabel>Type</ControlLabel>
         <Select options={ATTACHMENTS_TYPES} />
