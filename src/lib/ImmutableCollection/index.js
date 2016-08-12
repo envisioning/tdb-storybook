@@ -98,3 +98,85 @@ export default class ImmutableCollection {
     return this.reducer
   }
 }
+
+const collections = {
+  counts: Map(),
+  roles: Map(),
+  users: Map()
+}
+export const reducer = (state = Map(collections), { type, payload = {}}) => {
+  const {id, collection, doc, fields} = payload;
+
+  switch (type) {
+    case INSERT:
+      return state.setIn([collection, id], Map(doc));
+    break;
+    case REMOVE:
+      return state.deleteIn([collection, id])
+    break;
+    case UPDATE:
+      return state.updateIn([collection, id], doc => doc.merge(fields))
+    break;
+    default:
+      return state;
+  }
+}
+
+
+const insertDoc = ({doc, id, collection}) => {
+  return {
+    type: INSERT,
+    payload: {
+      id,
+      collection,
+      doc
+    }
+  }
+}
+
+
+const removeDoc = ({id, collection}) => {
+  return {
+    type: REMOVE,
+    payload: {
+      collection,
+      id
+    }
+  }
+}
+
+const updateDoc = ({id, collection, fields}) => {
+  return {
+    type: UPDATE,
+    payload: {
+      collection,
+      id,
+      fields
+    }
+  }
+}
+
+export const ddpListener = (client, dispatch) => {
+  client.ddp.on('added', ({collection, id, fields}) => {
+    dispatch(insertDoc({
+      doc: {...fields, id},
+      id,
+      collection,
+    }))
+  });
+
+  client.ddp.on('removed', ({collection, id}) => {
+    dispatch(removeDoc({
+      collection,
+      id
+    }))
+  });
+
+  client.ddp.on('changed', ({collection, id, fields}) => {
+    dispatch(updateDoc({
+      id,
+      collection,
+      fields
+    }));
+  });
+}
