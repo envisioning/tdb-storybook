@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import TechnologiesDashboardStat from '../../components/TechnologiesDashboardStat'
+import subscriptionHOC from '../../components/subscriptionHOC';
 
 const mapStateToProps = (state, ownProps) => {
   return {
@@ -18,9 +19,14 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 
   }
 }
+
+const subscriber = (ddp) => {
+  return ddp.subscribe('technologies-status-counter')
+}
+
 const TechnologiesDashboardStatContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(TechnologiesDashboardStat)
+)(subscriptionHOC(subscriber, TechnologiesDashboardStat))
 
 export default TechnologiesDashboardStatContainer

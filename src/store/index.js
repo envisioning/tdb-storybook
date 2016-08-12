@@ -6,7 +6,7 @@ import asteroid from '../asteroid';
 
 
 const loggerMiddleware = createLogger({
-  predicate: (getState, action) => !/redux-form/.test(action.type)
+  predicate: (getState, action) => !/redux-form|meteor/.test(action.type)
 });
 
 const store = createStore(

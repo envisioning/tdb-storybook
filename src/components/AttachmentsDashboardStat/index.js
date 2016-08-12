@@ -9,7 +9,8 @@ const AttachmentsDashboardStat = ({
   prospecting,
   closed,
   newest,
-  newestLink
+  newestLink,
+  subsReady
 }) => (
   <DashboardStat
     iconElementLeft={<Attachments />}
@@ -17,7 +18,7 @@ const AttachmentsDashboardStat = ({
     addLink={addLink}
     addText="Add a new Attachment" >
     <DashboardStatTableItem>
-      We have <b>{total}</b> attachments on TDB
+      We have <b>{total}</b> attachments on TDB {subsReady ? 'ready' : 'not-ready'}
     </DashboardStatTableItem>
     <DashboardStatTableItem>
       The newest one is <a className="label label-outline" href={newestLink}>{newest}</a>
