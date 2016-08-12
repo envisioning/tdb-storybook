@@ -3,7 +3,14 @@ export const REMOVE = 'meteor/REMOVE';
 export const UPDATE = 'meteor/UPDATE';
 export const SET_CONNECTION_STATE = 'meteor/SET_CONNECTION_STATE';
 export const SUBSCRIBE = 'meteor/SUBSCRIBE';
-export const SET_DDP_CLIENT = 'meteor/SET_DDP_CLIENT';
+export const REGISTER_DDP_CLIENT = 'meteor/REGISTER_DDP_CLIENT';
+
+export const REGISTER_SUB = 'meteor/REGISTER_SUB'
+export const SUBS_READY = 'meteor/SUBS_READY'
+export const STOP_SUB = 'meteor/STOP_SUB'
+
+import asteroid from '../asteroid'
+
 
 export const insertDoc = ({doc, id, collection}) => {
   return {
@@ -45,12 +52,42 @@ export const setConnectionState = (connected) => {
     }
   }
 }
-export const setDdpClient = (client) => {
+export const registerDdpClient = (client) => {
   return {
-    type: SET_DDP_CLIENT,
+    type: REGISTER_DDP_CLIENT,
     payload: {
       client
     }
+  }
+}
+
+
+export const unsubscribe = ({componentID, subId}) => {
+  return {
+    type: STOP_SUB,
+    payload: {
+      componentID,
+      subId
+    }
+  }
+}
+
+export const subscribe = ({ componentID, subId, pubName, params}) => {
+  return dispatch => {
+    console.log(componentID);
+    let handler
+    if (params) {
+      handler = asteroid.subscribe(pubName, params);
+    } else {
+      handler = asteroid.subscribe(pubName)
+    }
+
+    console.log('handler', handler);
+    handler.on('ready', () => {
+      console.log(componentID);
+      dispatch(subsReady({componentID, subId, handler}))
+    })
+    dispatch(registerSub({componentID, subId, handler}))
   }
 }
 
@@ -83,6 +120,6 @@ export const setupDdpClient = (asteroid) => {
       dispatch(setConnectionState(true));
     })
 
-    dispatch(setDdpClient(asteroid));
+    dispatch(registerDdpClient(asteroid));
   }
 }

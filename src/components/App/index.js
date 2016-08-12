@@ -7,7 +7,7 @@ import '../../styles/style.scss'
 import 'react-select/dist/react-select.css';
 import 'rc-slider/assets/index.css'
 import 'react-bootstrap-modal/lib/styles/rbm-patch.css'
-
+import 'react-spinkit/css/double-bounce.css'
 
 
 

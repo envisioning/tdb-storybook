@@ -1,6 +1,9 @@
 import React, { PropTypes } from 'react'
 import DashboardStat, { DashboardStatTableItem } from '../DashboardStat'
 import { Projects } from '../../resources/icons'
+import { Button } from 'react-bootstrap';
+import Spinner from 'react-spinkit';
+import Loader from 'react-loader';
 
 const ProjectsDashboardStat = ({
   addLink,
@@ -9,12 +12,16 @@ const ProjectsDashboardStat = ({
   prospecting,
   closed,
   newest,
-  newestLink
+  newestLink,
+  onStart,
+  onStop,
+  loading,
 }) => (
   <DashboardStat
     iconElementLeft={<Projects />}
     title="Projects"
     addLink={addLink}
+    loading={loading}
     addText="Add a new Project" >
     <DashboardStatTableItem>
       We have <b>{total}</b> Projects on TDB
@@ -31,6 +38,10 @@ const ProjectsDashboardStat = ({
     <DashboardStatTableItem>
       The newest one is <a className="label label-outline" href={newestLink}>{newest}</a>
     </DashboardStatTableItem>
+    {/*<DashboardStatTableItem>
+      <Button bsStyle="danger" onClick={onStop}>Stop</Button>
+      <Button bsStyle="success" onClick={onStart}>Start</Button>
+    </DashboardStatTableItem>*/}
   </DashboardStat>
 )
 

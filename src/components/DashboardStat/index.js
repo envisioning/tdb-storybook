@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react'
 import { Panel, PanelHeader, PanelBody, PanelTitle} from '../Panel'
 import styles from './styles'
+import Spinner from 'react-spinkit';
 
 export const DashboardStatTableItem = ({children}) => (
   <tr>
@@ -13,6 +14,7 @@ const DashboardStat = ({
   title,
   addLink,
   addText,
+  loading,
   children
 }) => (
   <Panel>
@@ -23,11 +25,16 @@ const DashboardStat = ({
       <a href={addLink} className="btn btn-primary btn-block">
         {addText}
       </a>
-      <table className="table">
-        <tbody>
-          {children}
-        </tbody>
-      </table>
+      {
+        loading ?
+        <Spinner spinnerName='double-bounce' style={{margin: 'auto', marginTop: 20, marginBottom: 20}}/>
+        :
+        <table className="table">
+          <tbody>
+            {children}
+          </tbody>
+        </table>
+      }
     </PanelBody>
   </Panel>
 )

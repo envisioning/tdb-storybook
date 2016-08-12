@@ -1,5 +1,5 @@
 import { Map } from 'immutable'
-import { SET_CONNECTION_STATE, SET_DDP_CLIENT } from '../../../actions'
+import { SET_CONNECTION_STATE, REGISTER_DDP_CLIENT } from '../../../actions'
 
 const initialState = Map({
   connected: false,
@@ -12,7 +12,7 @@ const connection = (state = initialState, action) => {
       const { connected } = action.payload
       return state.set('connected', connected);
     break;
-    case SET_DDP_CLIENT:
+    case REGISTER_DDP_CLIENT:
       const { client } = action.payload
       return state.set('ddp', client)
     break;

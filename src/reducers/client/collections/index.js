@@ -3,7 +3,11 @@ import { Map } from 'immutable'
 const initialState = Map({
   counts: Map(),
   roles: Map(),
-  users: Map()
+  users: Map(),
+  projects: Map(),
+  technologies: Map(),
+  organizations: Map(),
+  attachments: Map()
 });
 
 const collections = (state = initialState, { type, payload = {}}) => {
