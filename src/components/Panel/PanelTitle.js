@@ -16,7 +16,6 @@ class PanelTitle extends React.Component {
   static propTypes = {
     iconElementLeft: PropTypes.element,
     title: PropTypes.string.isRequired,
-    iconElementRight: PropTypes.element,
     style: PropTypes.object,
   }
 
@@ -31,7 +30,7 @@ class PanelTitle extends React.Component {
 
     return (
       <h3 style={Object.assign(styles.root, style)} {...other}>
-        {iconElementLeftWithStyles} {title} 
+        {iconElementLeftWithStyles} {title}
       </h3>
     )
   }
