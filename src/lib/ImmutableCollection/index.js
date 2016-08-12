@@ -1,6 +1,5 @@
-const INSERT = 'immutable-collection/INSERT';
-const REMOVE = 'immutable-collection/REMOVE';
-const UPDATE = 'immutable-collection/UPDATE';
+
+
 import { Map } from 'immutable';
 export default class ImmutableCollection {
   constructor(collection, asteroid, store) {
@@ -123,60 +122,14 @@ export const reducer = (state = Map(collections), { type, payload = {}}) => {
 }
 
 
-const insertDoc = ({doc, id, collection}) => {
+
+
+const clientConnected = () => {
   return {
-    type: INSERT,
-    payload: {
-      id,
-      collection,
-      doc
-    }
+    type: CONNECT,
+    payload: {}
   }
 }
-
-
-const removeDoc = ({id, collection}) => {
-  return {
-    type: REMOVE,
-    payload: {
-      collection,
-      id
-    }
-  }
-}
-
-const updateDoc = ({id, collection, fields}) => {
-  return {
-    type: UPDATE,
-    payload: {
-      collection,
-      id,
-      fields
-    }
-  }
-}
-
 export const ddpListener = (client, dispatch) => {
-  client.ddp.on('added', ({collection, id, fields}) => {
-    dispatch(insertDoc({
-      doc: {...fields, id},
-      id,
-      collection,
-    }))
-  });
 
-  client.ddp.on('removed', ({collection, id}) => {
-    dispatch(removeDoc({
-      collection,
-      id
-    }))
-  });
-
-  client.ddp.on('changed', ({collection, id, fields}) => {
-    dispatch(updateDoc({
-      id,
-      collection,
-      fields
-    }));
-  });
 }
