@@ -4,18 +4,11 @@ import Search from '../../containers/Search'
 import { Grid, Row, Col } from 'react-bootstrap'
 import TechFilterForm from '../../components/TechFilterForm'
 import Sort from '../../components/Sort'
-
-const CRITERIA_OPTIONS = [
-  { value: 'name.lower_case_sort', label: 'Name' },
-  { value: 'status', label: 'Status' },
-  { value: 'readinessNumber', label: 'Readiness' },
-  { value: 'createdAt', label: 'Created At' },
-  { value: 'updatedAt', label: 'Updated At' },
-];
+import { TECHNOLOGIES_SORT } from '../../resources/options'
 
 const TechnologiesDashboard = (props) => {
   return (
-    <Grid style={{width: 'initial'}}>
+    <Grid fluid>
       <Row>
         <Col xs={12} md={4}>
           <TechnologiesDashboardStatContainer />
@@ -27,16 +20,11 @@ const TechnologiesDashboard = (props) => {
       <Row>
         <Col md={12}>
           <Search
+            types={['technologies']}
             searchId='technologiesDashboardSearch'
             filterElement={<TechFilterForm />}
-            sortElement={<Sort options={[
-              { value: 'name.lower_case_sort', label: 'Name' },
-              { value: 'status', label: 'Status' },
-              { value: 'readinessNumber', label: 'Readiness' },
-              { value: 'createdAt', label: 'Created At' },
-              { value: 'updatedAt', label: 'Updated At' },
-              ]} />}
-            />
+            sortElement={<Sort options={TECHNOLOGIES_SORT} />}
+          />
         </Col>
       </Row>
     </Grid>

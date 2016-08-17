@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { createClass } from 'asteroid';
+import Navbar from '../Navbar';
 
 import 'bootstrap-sass/assets/stylesheets/_bootstrap.scss';
 import 'sweetalert/dist/sweetalert.css';
@@ -21,6 +22,7 @@ export default class App extends Component {
     const { children } = this.props
     return (
       <div>
+        <Navbar/>
         {children}
       </div>
     );

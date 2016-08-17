@@ -101,7 +101,6 @@ class ResultsGrid extends React.Component {
 
   render() {
     const { loading } = this.props
-    console.log('cardGrid loading? ', loading)
     return (
       <div style={{backgroundColor: loading ? '#d3d3d3' : 'white'}}>
         <Masonry

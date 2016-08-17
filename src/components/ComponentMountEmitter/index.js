@@ -4,7 +4,7 @@ export default (ComposedComponent) => {
       componentDidMount() {
         const { onComponentDidMount } = this.props
         if (onComponentDidMount && typeof onComponentDidMount === 'function') {
-          onComponentDidMount()
+          onComponentDidMount.bind(this)()
         }
       }
       render() {

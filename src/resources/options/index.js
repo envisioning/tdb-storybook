@@ -1,3 +1,32 @@
+export const ORGANIZATIONS_SORT = [
+  { value: 'name.lower_case_sort', label: 'Name' },
+  { value: 'type', label: 'Type' },
+  { value: 'technologiesCount', label: 'Number of Technologies' },
+  { value: 'projectsCount', label: 'Number of Projects' },
+  { value: 'createdAt', label: 'Created At' },
+  { value: 'updatedAt', label: 'Updated At' }
+]
+export const TECHNOLOGIES_SORT = [
+  { value: 'name.lower_case_sort', label: 'Name' },
+  { value: 'status', label: 'Status' },
+  { value: 'readinessNumber', label: 'Readiness' },
+  { value: 'createdAt', label: 'Created At' },
+  { value: 'updatedAt', label: 'Updated At' },
+]
+export const ATTACHMENTS_SORT = [
+  { value: 'name.lower_case_sort', label: 'Name' },
+  { value: 'type', label: 'Type' },
+  { value: 'totalRelationsCount', label: 'Total Relations' },
+  { value: 'createdAt', label: 'Created At' },
+  { value: 'updatedAt', label: 'Updated At' },
+]
+export const PROJECTS_SORT = [
+  { value: 'name.lower_case_sort', label: 'Name' },
+  { value: 'status', label: 'Status' },
+  { value: 'technologiesStashCount', label: 'Technologies in Stash' },
+  { value: 'createdAt', label: 'Created At' },
+  { value: 'updatedAt', label: 'Updated At' },
+]
 export const ATTACHMENTS_TYPES = [
   {
     label: 'Article',

@@ -34,6 +34,7 @@ const Sort = ({
             style={{height: 36}}
             bsStyle={direction === 'asc' ? 'success' : 'default'}
             onClick={() => {
+              if (!criteria) return;
               onChange({
                 direction: 'asc',
                 criteria
@@ -46,6 +47,7 @@ const Sort = ({
             style={{height: 36}}
             bsStyle={direction === 'desc' ? 'success' : 'default'}
             onClick={() => {
+              if (!criteria) return;
               onChange({
                 direction: 'desc',
                 criteria

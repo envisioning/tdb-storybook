@@ -16,8 +16,10 @@ export const SET_LOADING = 'search/SET_LOADING'
 import { Map } from 'immutable'
 import { insertDoc } from './'
 import { filterFormToEs, sortFormToEs } from '../utils/form_to_es'
+import { bulkInsert } from './search_cache';
+import _ from 'lodash';
 
-export const makeSearch = (searchId, shouldConcatResults = false) => {
+export const makeSearch = (searchId, shouldConcatResults = false, types = []) => {
   return (dispatch, getState) => {
     const state = getState();
     const text = state.search.getIn([searchId, 'text'] , '');
@@ -34,37 +36,46 @@ export const makeSearch = (searchId, shouldConcatResults = false) => {
       sort,
       filter,
       size,
-      from
+      from,
+      types
     }
+    // We will begin the search, set Loading to TRUE
     dispatch(setLoading(true, searchId));
-
+    // Call the async method and get a promise
     asteroid.call('search', searchObject)
     .then(data => {
-      const results = data.results;
+      // when the promise is resolved, set Loading to FALSE
       dispatch(setLoading(false, searchId));
-      console.log('received from server: ', results)
-      const transformedResults = results.map(result => {
-        const { _type, _id, _score, ...doc} = result
-        delete doc._highlight;
-        dispatch(insertDoc({
-          doc: doc,
-          id: _id,
-          collection: _type
-        }))
-
-        return {
-          score: _score,
-          id: _id,
-          collection: _type
-        }
-      })
-
-      if (shouldConcatResults) {
-        dispatch(concatResults(transformedResults, searchId))
-      } else {
-        dispatch(setResults(transformedResults, searchId))
+      // when the data arrives, extract the relevant parts
+      const docs = data.results;
+      const metadata = {
+        took: data.took,
+        total: data.total
       }
 
+      // lets build our results list based on the response
+      // we just need the _score, the _id and the _type
+      const results = docs.map(({ _type, _id, _score }) => ({
+        _score,
+        _id,
+        _type
+      }))
+
+      //  we need to cache the docs received, first let's group them by _type
+      //  searchCache reducer will take care of trasforming this deep object into immutable Maps
+      const docsGroupedByTypes = _.groupBy(docs, '_type');
+      dispatch(bulkInsert(docsGroupedByTypes))
+
+
+      if (shouldConcatResults) {
+        // If this search was a 'load more search', then we should not discard oldest results, instead, we will concat them
+        dispatch(concatResults(results, searchId))
+      } else {
+        // but if it is a new search (text, filters, sort has changed) we will discard older results
+        dispatch(setResults(results, searchId))
+      }
+
+      // set metadata
       dispatch(setMetadata({
         took: data.took,
         total: data.total

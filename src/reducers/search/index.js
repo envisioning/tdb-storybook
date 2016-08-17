@@ -29,7 +29,10 @@ const searchShape = {
   loading: false
 }
 const initialState = Map({
-  technologiesDashboardSearch: Map(searchShape)
+  technologiesDashboardSearch: Map(searchShape),
+  organizationsDashboardSearch: Map(searchShape),
+  projectsDashboardSearch: Map(searchShape),
+  attachmentsDashboardSearch: Map(searchShape)
 })
 
 /*
@@ -44,15 +47,15 @@ export default (state = initialState, { type, payload = {} }) => {
     case MAKE_SEARCH:
       //thunk
     case SET_FILTER:
-      return state.setIn([searchId, 'filter'], Map(payload.filter))
+      return state.setIn([searchId, 'filter'], Map(payload.filter)).setIn([searchId, 'from'], 0)
     case SET_SORT:
-      return state.setIn([searchId, 'sort'], Map(payload.sort))
+      return state.setIn([searchId, 'sort'], Map(payload.sort)).setIn([searchId, 'from'], 0)
     case INSERT_RESULT:
       return state.setIn([searchId, 'results', payload.id], Map(payload.result))
     case SET_METADATA:
       return state.setIn([searchId, 'metadata'], Map(payload.metadata))
     case SET_SEARCH_TEXT:
-      return state.setIn([searchId, 'text'], payload.text)
+      return state.setIn([searchId, 'text'], payload.text).setIn([searchId, 'from'], 0)
     case SET_START:
       return state.setIn([searchId, 'start'], payload.start)
     case SET_SIZE:

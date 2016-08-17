@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react'
-import ProjectsDashboardStatContainer from '../../containers/ProjectsDashboardStatContainer';
-
 import { Grid, Row, Col } from 'react-bootstrap'
+import Sort from '../../components/Sort'
+import ProjectFilterForm from '../../components/ProjectFilterForm'
+import Search from '../../containers/Search'
+import ProjectsDashboardStatContainer from '../../containers/ProjectsDashboardStatContainer';
+import { PROJECTS_SORT } from '../../resources/options'
+
 const ProjectsDashboard = (props) => {
   return (
-    <Grid style={{width: 'initial'}}>
+    <Grid fluid>
       <Row>
         <Col xs={12} md={4}>
           <ProjectsDashboardStatContainer />
@@ -15,7 +19,12 @@ const ProjectsDashboard = (props) => {
       </Row>
       <Row>
         <Col md={12}>
-          Search
+          <Search
+            types={['projects']}
+            searchId='projectsDashboardSearch'
+            filterElement={<ProjectFilterForm />}
+            sortElement={<Sort options={PROJECTS_SORT} />}
+          />
         </Col>
       </Row>
     </Grid>

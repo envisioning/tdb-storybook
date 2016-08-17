@@ -25,7 +25,6 @@ const SearchLayout = ({
   sortElement,
   metadata,
 }) => {
-  console.log(loading)
   return (
     <PanelBody>
       <SearchInput

@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react'
-import AttachmentsDashboardStatContainer from '../../containers/AttachmentsDashboardStatContainer';
-
 import { Grid, Row, Col } from 'react-bootstrap'
+import Sort from '../../components/Sort'
+import AttachmentFilterForm from '../../components/AttachmentFilterForm'
+import Search from '../../containers/Search'
+import AttachmentsDashboardStatContainer from '../../containers/AttachmentsDashboardStatContainer';
+import { ATTACHMENTS_SORT } from '../../resources/options'
+
 const AttachmentsDashboard = (props) => {
   return (
-    <Grid style={{width: 'initial'}}>
+    <Grid fluid>
       <Row>
         <Col xs={12} md={4}>
           <AttachmentsDashboardStatContainer />
@@ -15,7 +19,12 @@ const AttachmentsDashboard = (props) => {
       </Row>
       <Row>
         <Col md={12}>
-          Search
+          <Search
+            types={['attachments', 'organizations', 'technologies']}
+            searchId='attachmentsDashboardSearch'
+            filterElement={<AttachmentFilterForm />}
+            sortElement={<Sort options={ATTACHMENTS_SORT} />}
+          />
         </Col>
       </Row>
     </Grid>

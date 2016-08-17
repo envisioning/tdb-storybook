@@ -3,7 +3,7 @@ export function filterFormToEs(value, mapping) {
   const esFilter = [];
   keys.forEach(key => { //  'status'
     const val = value[key]; // ['published, 'draft']
-    if (!val) return;
+    if (!val || (Array.isArray(val) && val.length === 0)) return;
     let criteriaValue
     const clauseKey = mapping[key];
     if (clauseKey === 'range') {
