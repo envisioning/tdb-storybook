@@ -77,6 +77,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     onChangeSearchText(text) {
       dispatch(setSearchText(text, searchId))
+    },
+    onStoppedTyping() {
       dispatch(makeSearch(searchId, false, types));
     },
     onChangeFilter(filter) {

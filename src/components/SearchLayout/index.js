@@ -14,6 +14,7 @@ const SearchLayout = ({
   onIconClick,
   onToggleAdvancedSearch,
   onChangeSearchText,
+  onStoppedTyping,
   onChangeSort,
   onChangeFilter,
   onLoadMore,
@@ -28,6 +29,7 @@ const SearchLayout = ({
   return (
     <PanelBody>
       <SearchInput
+        onStoppedTyping={onStoppedTyping}
         value={searchText}
         loading={loading}
         error={error}
