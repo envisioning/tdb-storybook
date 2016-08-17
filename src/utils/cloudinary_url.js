@@ -4,7 +4,7 @@ const Meteor = {
   settings: {
     public: {
       cloudinary: {
-        s3MappingFolder: 's3-development'
+        s3MappingFolder: 's3-staging'
       }
     }
   }

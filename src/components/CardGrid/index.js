@@ -7,6 +7,15 @@ import OrgCard from '../OrgCard';
 import Masonry from 'react-masonry-component';
 import Perf from 'react-addons-perf';
 
+import { SpringGrid, measureItems, makeResponsive, layout, CSSGrid } from 'react-stonecutter';
+
+const Grid = makeResponsive(measureItems(SpringGrid, { measureImages: true }), {
+  maxWidth: 2560,
+  minPadding: 150
+});
+
+// const Grid = measureItems(CSSGrid, { measureImages: true })
+
 window.Perf = Perf;
 
 const SCROLL_LISTENER_DEBOUNCE = 250;
@@ -29,12 +38,12 @@ class ResultsGrid extends React.Component {
   }
 
   scrollOnBottom() {
-    return window.innerHeight + window.scrollY >= 0.75 * document.body.scrollHeight;
+    return window.innerHeight + window.scrollY >= 0.85 * document.body.scrollHeight;
   }
 
   resultsLowerThanTotal() {
     const { results, total} = this.props;
-    return results.length < total;
+    return results.size < total;
   }
 
   conditionsToLoadMore() {
@@ -50,8 +59,9 @@ class ResultsGrid extends React.Component {
   }
 
   tryToLoadMore() {
-    const { onLoadMore } = this.props;
-    if (this.conditionsToLoadMore()) {
+    const { onLoadMore, loading } = this.props;
+
+    if (!loading && this.conditionsToLoadMore()) {
         onLoadMore();
     }
   }
@@ -59,9 +69,9 @@ class ResultsGrid extends React.Component {
   shouldComponentUpdate(nextProps, nextState) {
     return !_.isEqual(this.props.results, nextProps.results);
   }
+
   renderCard(type, data) {
     const { highlight } = this.props;
-
     switch (type) {
       case 'technologies':
         return <TechCard highlight={highlight} {...data} />;
@@ -75,13 +85,14 @@ class ResultsGrid extends React.Component {
         return <ProjectCard {...data} />;
     }
   }
+
   renderItems() {
     const { results } = this.props;
 
-    return results.map(result => {
-      const { _type, ...data} = result;
+    return results && results.map((result, i) => {
+      const { _type, ...data} = result.toObject();
       return (
-        <div key={data._id} style={{width: '300px'}}>
+        <div key={i} style={{width: '300px'}}>
           {this.renderCard(_type, data)}
         </div>
       );
@@ -89,15 +100,31 @@ class ResultsGrid extends React.Component {
   }
 
   render() {
+    const { loading } = this.props
+    console.log('cardGrid loading? ', loading)
     return (
-      <Masonry
-        style={{width: '100%'}}
-        disableImagesLoaded={false}
-        updateOnEachImageLoad={true}
-        onImagesLoaded={this.tryToLoadMore}
-        options={options}>
-      { this.renderItems() }
-      </Masonry>
+      <div style={{backgroundColor: loading ? '#d3d3d3' : 'white'}}>
+        <Masonry
+          style={{width: '100%'}}
+          disableImagesLoaded={false}
+          updateOnEachImageLoad={true}
+          onImagesLoaded={this.tryToLoadMore}
+          options={options}>
+        {/*// <Grid
+        //   component="div"
+        //   //columns={5}
+        //   columnWidth={300}
+        //   gutterWidth={25}
+        //   gutterHeight={25}
+        //   layout={layout.pinterest}
+        //   springConfig={{ stiffness: 170, damping: 26 }}
+        // >*/}
+          { this.renderItems() }
+        {/*// </Grid>*/}
+
+        </Masonry>
+        {loading && <span>Loading...</span>}
+      </div>
     );
   }
 }

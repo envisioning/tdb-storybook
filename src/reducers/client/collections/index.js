@@ -15,7 +15,7 @@ const collections = (state = initialState, { type, payload = {}}) => {
 
   switch (type) {
     case INSERT:
-      return state.setIn([collection, id], Map(doc));
+      return state.setIn([collection, id], Map({...doc, _id: id}));
     break;
     case REMOVE:
       return state.deleteIn([collection, id])

@@ -94,8 +94,10 @@ export const subscribe = ({ componentID, subId, pubName, params}) => {
 export const setupDdpClient = (asteroid) => {
   return dispatch => {
     asteroid.ddp.on('added', ({collection, id, fields}) => {
+      console.log('ADDED!!');
+      debugger;
       dispatch(insertDoc({
-        doc: {...fields, id},
+        doc: {...fields, _id: id},
         id,
         collection,
       }))

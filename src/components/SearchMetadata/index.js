@@ -6,7 +6,7 @@ const SearchMetadata = ({
   took
 }) => {
   return (
-    <div className="metadata">
+    <div className="metadata" style={{textAlign: 'right'}}>
       <i>
         took: <b>{took} ms</b>,
         total: <b>{total}</b> results,

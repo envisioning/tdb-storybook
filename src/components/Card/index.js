@@ -35,7 +35,6 @@ class Card extends React.Component {
       showFullDescription = false,
       ...props
     } = this.props;
-
     return (
       <div className="ibox card-box"
         style={{...styles.container, opacity: isDeleted ? 0.5 : 1, ...style}}>
@@ -58,7 +57,7 @@ class Card extends React.Component {
             </div>
           }
           <a href={entryLink}>
-            <SafeImage className='img-responsive' src={image ? image : IMAGE_PLACEHOLDER} />
+            <img className='img-responsive' src={image ? image : IMAGE_PLACEHOLDER} />
           </a>
           <div className="card-body">
             {
@@ -85,9 +84,9 @@ class Card extends React.Component {
                   {description}
                 </Highlight>
               </p>
-              <p style={{color: '#d3d3d3', fontSize: 10}}>
+              {/*<p style={{color: '#d3d3d3', fontSize: 10}}>
                 {_score}
-              </p>
+              </p>*/}
             </div>
 
             <div className="btn-group card-footer">

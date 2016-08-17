@@ -63,61 +63,61 @@ export const AsteroidProvider = connect(
 
 
 
-export default (fn, ComposedComponent) => {
-  class SubscriptionHOC extends React.Component {
-    constructor(props) {
-      super(props)
-
-      this.state = {
-        subsReady: false
-      }
-    }
-
-    componentWillMount() {
-      const { onSubsReady } = this.props
-      const { asteroid } = this.context;
-
-      const subs = fn(asteroid);
-
-      if (subs) {
-        if (Array.isArray(subs)) {
-          const necessarySubs = subs.length
-          let readySubs = 0;
-
-          subs.forEach(sub => {
-            sub.on('ready', () => {
-              readySubs++;
-
-              if (necessarySubs === readySubs) {
-                this.setState({
-                  subsReady: true
-                })
-              }
-            })
-          })
-        } else {
-          subs.on('ready', () => {
-            this.setState({
-              subsReady: true
-            })
-          })
-        }
-      } else {
-        console.warn('Your subscriber must return subscription handlers!')
-      }
-    }
-
-
-    render() {
-      return <ComposedComponent
-        {...this.props}
-        subsReady={this.state.subsReady}/>
-    }
-  }
-
-  SubscriptionHOC.contextTypes = {
-    asteroid: PropTypes.object
-  }
-
-  return SubscriptionHOC;
-}
+// export default (fn, ComposedComponent) => {
+//   class SubscriptionHOC extends React.Component {
+//     constructor(props) {
+//       super(props)
+//
+//       this.state = {
+//         subsReady: false
+//       }
+//     }
+//
+//     componentWillMount() {
+//       const { onSubsReady } = this.props
+//       const { asteroid } = this.context;
+//
+//       const subs = fn(asteroid);
+//
+//       if (subs) {
+//         if (Array.isArray(subs)) {
+//           const necessarySubs = subs.length
+//           let readySubs = 0;
+//
+//           subs.forEach(sub => {
+//             sub.on('ready', () => {
+//               readySubs++;
+//
+//               if (necessarySubs === readySubs) {
+//                 this.setState({
+//                   subsReady: true
+//                 })
+//               }
+//             })
+//           })
+//         } else {
+//           subs.on('ready', () => {
+//             this.setState({
+//               subsReady: true
+//             })
+//           })
+//         }
+//       } else {
+//         console.warn('Your subscriber must return subscription handlers!')
+//       }
+//     }
+//
+//
+//     render() {
+//       return <ComposedComponent
+//         {...this.props}
+//         subsReady={this.state.subsReady}/>
+//     }
+//   }
+//
+//   SubscriptionHOC.contextTypes = {
+//     asteroid: PropTypes.object
+//   }
+//
+//   return SubscriptionHOC;
+// }

@@ -34,7 +34,7 @@ const SearchInput = ({
           <InputGroup.Addon onClick={onIconClick}>
             {iconElement}
           </InputGroup.Addon>
-          <FormControl type="text" onChange={onChange}/>
+          <FormControl type="text" onChange={(e,v) => onChange(e.target.value)} value={value}/>
 
           <InputGroup.Button>
           <Button bsStyle="primary" onClick={onFilterClick}>

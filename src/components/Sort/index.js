@@ -4,27 +4,54 @@ import { SortAscendent , SortDescendent } from '../../resources/icons'
 import Select from 'react-select'
 const Sort = ({
   options,
-  value,
-  direction,
-  onChangeDirection,
-  onChange
+  onChange,
+  sort
 }) => {
+  const {
+    direction,
+    criteria
+  } = sort.toObject()
   return (
     <FormGroup>
       <InputGroup>
         {/*<FormControl type="text" />*/}
 
         <Select
-            name="form-field-name"
-            value={value}
+          style={{borderRadius: 0}}
+            name="criteria"
+            value={criteria}
             options={options}
-            onChange={onChange}
+            onChange={(v) => {
+              const newCriteria = v.value;
+              onChange({
+                criteria: newCriteria,
+                direction: direction ? direction : 'asc'
+              })
+            }}
         />
         <InputGroup.Button>
-          <Button bsStyle={direction === 'asc' ? 'success' : 'default'}>
+          <Button
+            style={{height: 36}}
+            bsStyle={direction === 'asc' ? 'success' : 'default'}
+            onClick={() => {
+              onChange({
+                direction: 'asc',
+                criteria
+              })
+            }}
+          >
             <SortAscendent />
           </Button>
-          <Button bsStyle={direction === 'desc' ? 'success' : 'default'}>
+          <Button
+            style={{height: 36}}
+            bsStyle={direction === 'desc' ? 'success' : 'default'}
+            onClick={() => {
+              onChange({
+                direction: 'desc',
+                criteria
+              })
+            }}
+          >
             <SortDescendent />
           </Button>
         </InputGroup.Button>

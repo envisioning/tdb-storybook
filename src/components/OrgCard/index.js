@@ -27,7 +27,6 @@ class OrganizationCard extends Card {
       isDeleted,
       ...props
     } = this.props;
-
     return (
       <Card
         _id={_id}
@@ -86,7 +85,6 @@ class OrganizationCard extends Card {
         deleteAlertOpen={deleteAlertOpen}
         onConfirmDelete={onConfirmDelete}
         isDeleted={isDeleted}
-        {...props}
         />
     );
   }

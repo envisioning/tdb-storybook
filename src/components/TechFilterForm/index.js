@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import Select from 'react-select';
 import Slider from 'rc-slider';
-import { FormGroup } from 'react-bootstrap';
+import { Form, FormGroup, ControlLabel, Col } from 'react-bootstrap';
 
 const STATUS_OPTIONS = [
   { value: 'draft', label: 'Draft' },
@@ -12,50 +12,87 @@ const READINESS_MIN = 0;
 const READINESS_MAX = 5;
 
 const TechFilterForm = ({
-  status,
-  onChangeStatus,
-  tags,
-  onChangeTags,
-  readinessNumber,
-  onChangeReadinessNumber
+  onChange,
+  filter
 }) => {
+  const {
+    status,
+    tags,
+      readinessNumber = [0, 5]
+  } = filter.toObject()
   return (
-    <form style={{padding: 10}}>
+    <Form horizontal style={{padding: 10}}>
       <FormGroup>
-        <label htmlFor="status">Status</label>
-        <Select
-          name="status"
-          multi={true}
-          options={STATUS_OPTIONS}
-          value={status}
-          onChange={onChangeStatus}
-        />
+        <Col componentClass={ControlLabel} sm={2}>
+          Status
+        </Col>
+        <Col sm={10}>
+          <Select
+            name="status"
+            multi={true}
+            options={STATUS_OPTIONS}
+            value={status}
+            onChange={(v) => {
+              console.log(v)
+              const newStatus = v.map(opt => opt.value)
+
+              console.log(newStatus)
+              onChange({
+                status: newStatus,
+                tags,
+                readinessNumber
+              })
+            }}
+          />
+        </Col>
       </FormGroup>
       <FormGroup>
-        <label htmlFor="tags">Tags</label>
-        <Select
-          allowCreate={true}
-          name="tags"
-          multi={true}
-          value={tags}
-          onChange={onChangeTags}
-        />
+        <Col componentClass={ControlLabel} sm={2}>
+          Tags
+        </Col>
+        <Col sm={10}>
+          <Select
+            allowCreate={true}
+            name="tags"
+            multi={true}
+            value={tags}
+            onChange={(v) => {
+              const newTags = v.value
+              onChange({
+                tags: newTags,
+                status,
+                readinessNumber
+              })
+            }}
+          />
+        </Col>
       </FormGroup>
 
       <FormGroup>
-        <label htmlFor="readinessNumber">Readiness</label>
-        <Slider
-          name="readinessNumber"
-          range
-          dots
-          step={1}
-          value={[readinessNumber[0], readinessNumber[1]]}
-          min={READINESS_MIN}
-          max={READINESS_MAX}
-          onChange={onChangeReadinessNumber}
-        />
+        <Col componentClass={ControlLabel} sm={2}>
+          Readiness
+        </Col>
+        <Col sm={10} style={{paddingTop: 14, paddingLeft: 25, paddingRight: 25}}>
+          <Slider
+            name="readinessNumber"
+            range
+            dots
+            step={1}
+            value={readinessNumber}
+            min={READINESS_MIN}
+            max={READINESS_MAX}
+            onChange={(v) => {
+              const newReadinessNumber = v
+              onChange({
+                readinessNumber: newReadinessNumber,
+                tags,
+                status
+              })
+            }}
+          />
+        </Col>
       </FormGroup>
-    </form>
+    </Form>
   )
 }
 
