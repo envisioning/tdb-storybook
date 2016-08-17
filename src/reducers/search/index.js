@@ -55,7 +55,7 @@ export default (state = initialState, { type, payload = {} }) => {
     case SET_METADATA:
       return state.setIn([searchId, 'metadata'], Map(payload.metadata))
     case SET_SEARCH_TEXT:
-      return state.setIn([searchId, 'text'], payload.text).setIn([searchId, 'from'], 0)
+      return state.setIn([searchId, 'searchText'], payload.text).setIn([searchId, 'from'], 0)
     case SET_START:
       return state.setIn([searchId, 'start'], payload.start)
     case SET_SIZE:

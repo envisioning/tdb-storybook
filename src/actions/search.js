@@ -22,7 +22,7 @@ import _ from 'lodash';
 export const makeSearch = (searchId, shouldConcatResults = false, types = []) => {
   return (dispatch, getState) => {
     const state = getState();
-    const text = state.search.getIn([searchId, 'text'] , '');
+    const text = state.search.getIn([searchId, 'searchText'] , '');
     const sort = sortFormToEs(state.search.getIn([searchId, 'sort']).toObject())
     const filter = filterFormToEs(state.search.getIn([searchId, 'filter']).toObject(), {
       status: 'terms',

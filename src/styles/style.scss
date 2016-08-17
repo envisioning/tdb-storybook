@@ -7,6 +7,10 @@
 #root {
   padding: 0px !important;
 }
+.Select-menu-outer {
+  z-index: 9999999999 !important;
+}
+
 // Google Fonts
 @import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
 
