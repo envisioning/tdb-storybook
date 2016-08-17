@@ -34,10 +34,10 @@ const mapDispatchToProps = (dispatch) => {
       });
 
       asteroid.ddp.on('removed', ({collection, id}) => {
-        dispatch(removeDoc({
-          collection,
-          id
-        }))
+        // dispatch(removeDoc({
+        //   collection,
+        //   id
+        // }))
       });
 
       asteroid.ddp.on('changed', ({collection, id, fields}) => {

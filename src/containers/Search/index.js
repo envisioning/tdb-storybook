@@ -10,7 +10,6 @@ import makeGetDisplayedDocs from '../../selectors/search_selector'
 const makeMapStateToProps = () => {
   const getDisplayedDocs = makeGetDisplayedDocs()
   const mapStateToProps = (state, props) => {
-    console.log('CALCULATING - map state')
     const { searchId } = props
     const stateSubset = state.search.get(searchId);
 

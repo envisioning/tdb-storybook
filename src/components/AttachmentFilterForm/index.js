@@ -13,9 +13,10 @@ const TYPE_OPTIONS = [
 ];
 
 const AttachmentsFilterForm = ({
-  type,
-  onChangeType,
+  filter,
+  onChange,
 }) => {
+  const { type } = filter.toObject()
   return (
     <form style={{padding: 10}}>
       <FormGroup>
@@ -25,7 +26,12 @@ const AttachmentsFilterForm = ({
           multi={true}
           options={TYPE_OPTIONS}
           value={type}
-          onChange={onChangeType}
+          onChange={(v) => {
+            const newType = v ? v.map(opt => opt.value) : null
+            onChange({
+              type: newType,
+            })
+          }}
         />
       </FormGroup>
     </form>

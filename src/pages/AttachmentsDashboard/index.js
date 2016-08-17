@@ -20,7 +20,7 @@ const AttachmentsDashboard = (props) => {
       <Row>
         <Col md={12}>
           <Search
-            types={['attachments', 'organizations', 'technologies']}
+            types={['attachments']}
             searchId='attachmentsDashboardSearch'
             filterElement={<AttachmentFilterForm />}
             sortElement={<Sort options={ATTACHMENTS_SORT} />}

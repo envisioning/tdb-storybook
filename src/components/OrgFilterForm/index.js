@@ -7,9 +7,10 @@ import { ORGANIZATIONS_TYPES } from '../../resources/options';
 
 
 const OrgFilterForm = ({
-  type,
-  onChangeType,
+  filter,
+  onChange,
 }) => {
+  const { type } = filter.toObject();
   return (
     <form style={{padding: 10}}>
       <FormGroup>
@@ -19,7 +20,12 @@ const OrgFilterForm = ({
           multi={true}
           options={ORGANIZATIONS_TYPES}
           value={type}
-          onChange={onChangeType}
+          onChange={(v) => {
+            const newType = v ? v.map(opt => opt.value) : null
+            onChange({
+              type: newType,
+            })
+          }}
         />
       </FormGroup>
     </form>

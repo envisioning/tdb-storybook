@@ -32,7 +32,7 @@ const Sort = ({
         <InputGroup.Button>
           <Button
             style={{height: 36}}
-            bsStyle={direction === 'asc' ? 'success' : 'default'}
+            bsStyle={direction === 'asc' ? 'primary' : 'default'}
             onClick={() => {
               if (!criteria) return;
               onChange({
@@ -45,7 +45,7 @@ const Sort = ({
           </Button>
           <Button
             style={{height: 36}}
-            bsStyle={direction === 'desc' ? 'success' : 'default'}
+            bsStyle={direction === 'desc' ? 'primary' : 'default'}
             onClick={() => {
               if (!criteria) return;
               onChange({

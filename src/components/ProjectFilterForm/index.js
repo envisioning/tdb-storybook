@@ -10,9 +10,10 @@ const STATUS_OPTIONS = [
 ];
 
 const ProjectFilterForm = ({
-  status,
-  onChangeStatus,
+  filter,
+  onChange,
 }) => {
+  const { status } = filter.toObject()
   return (
     <form style={{padding: 10}}>
       <FormGroup>
@@ -22,7 +23,12 @@ const ProjectFilterForm = ({
           multi={true}
           options={STATUS_OPTIONS}
           value={status}
-          onChange={onChangeStatus}
+          onChange={(v) => {
+            const newStatus = v ? v.map(opt => opt.value) : null
+            onChange({
+              status: newStatus,
+            })
+          }}
         />
       </FormGroup>
     </form>

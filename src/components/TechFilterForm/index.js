@@ -33,10 +33,7 @@ const TechFilterForm = ({
             options={STATUS_OPTIONS}
             value={status}
             onChange={(v) => {
-              console.log(v)
-              const newStatus = v.map(opt => opt.value)
-
-              console.log(newStatus)
+              const newStatus = v ? v.map(opt => opt.value) : null
               onChange({
                 status: newStatus,
                 tags,

@@ -27,7 +27,8 @@ export const makeSearch = (searchId, shouldConcatResults = false, types = []) =>
     const filter = filterFormToEs(state.search.getIn([searchId, 'filter']).toObject(), {
       status: 'terms',
       tags: 'terms',
-      readinessNumber: 'range'
+      readinessNumber: 'range',
+      type: 'terms',
     })
     const size = state.search.getIn([searchId, 'size'])
     const from = state.search.getIn([searchId, 'from'])
@@ -48,6 +49,7 @@ export const makeSearch = (searchId, shouldConcatResults = false, types = []) =>
       dispatch(setLoading(false, searchId));
       // when the data arrives, extract the relevant parts
       const docs = data.results;
+      console.log(docs)
       const metadata = {
         took: data.took,
         total: data.total
